@@ -11,6 +11,9 @@ namespace Digital_Notes_Manager
         static void Main()
         {
             ApplicationConfiguration.Initialize();
+
+            var serviceProvider = ConfigureServices();
+
             System.Windows.Forms.Application.Run(new DigitalNotesManagerForm());
         }
 
