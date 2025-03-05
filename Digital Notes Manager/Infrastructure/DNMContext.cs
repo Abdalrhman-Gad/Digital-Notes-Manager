@@ -16,7 +16,7 @@ namespace Digital_Notes_Manager.Infrastructure
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.;Database=DigitalNotesManager;Trusted_Connection=True;Encrypt=False");
+            optionsBuilder.UseSqlServer();
         }
     }
 }

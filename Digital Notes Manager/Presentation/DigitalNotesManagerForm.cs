@@ -1,3 +1,5 @@
+using Digital_Notes_Manager.Domain.Models;
+
 namespace Digital_Notes_Manager
 {
     public partial class DigitalNotesManagerForm : Form
