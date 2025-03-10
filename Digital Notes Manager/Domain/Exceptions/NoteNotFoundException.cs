@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Digital_Notes_Manager.Domain.Exceptions
 {
-    public class NotNotFoundException : Exception
+    public class NoteNotFoundException : Exception
     {
-        public NotNotFoundException(string message) : base(message)
+        public NoteNotFoundException(string message) : base(message)
         {
         }
     }
