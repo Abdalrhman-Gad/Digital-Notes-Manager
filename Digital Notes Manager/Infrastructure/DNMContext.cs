@@ -10,6 +10,10 @@ namespace Digital_Notes_Manager.Infrastructure
 {
     public class DNMContext : DbContext
     {
+
+        //public DNMContext(DbContextOptions<DNMContext> options) : base(options)
+        //{
+        //}
         public DbSet<Note> Notes { get; set; }
 
         public DbSet<User> Users { get; set; }
@@ -20,3 +24,4 @@ namespace Digital_Notes_Manager.Infrastructure
         }
     }
 }
+
