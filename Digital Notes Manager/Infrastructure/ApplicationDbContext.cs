@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Digital_Notes_Manager.Infrastructure
 {
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -18,7 +18,5 @@ namespace Digital_Notes_Manager.Infrastructure
         }
 
         public virtual DbSet<Note> Notes { get; set; }
-
-        public virtual DbSet<User> Users { get; set; }
     }
 }

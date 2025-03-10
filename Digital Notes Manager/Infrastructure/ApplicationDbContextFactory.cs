@@ -9,16 +9,17 @@ namespace Digital_Notes_Manager.Infrastructure
     {
         public ApplicationDbContext CreateDbContext(string[] args)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-
-            // Load configuration from appsettings.json
+            // Build the configuration (usually from appsettings.json)
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            // Configure DbContext to use SQL Server with connection string from configuration
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            // Get the connection string
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            optionsBuilder.UseSqlServer(connectionString);
 
             return new ApplicationDbContext(optionsBuilder.Options);
         }

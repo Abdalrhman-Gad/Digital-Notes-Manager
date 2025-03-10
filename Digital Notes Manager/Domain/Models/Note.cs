@@ -27,8 +27,6 @@ namespace Digital_Notes_Manager.Domain.Models
 
         public DateTime? ReminderDate { get; set; }
 
-        public int UserID { get; set; }
-
         public User User { get; set; }
     }
 }

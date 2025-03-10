@@ -1,15 +1,18 @@
+using Digital_Notes_Manager.Domain.Models;
 using Digital_Notes_Manager.Infrastructure;
+using Digital_Notes_Manager.Presentation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using System.Windows.Forms;
 
 namespace Digital_Notes_Manager
 {
-    internal static class Program
+    public static class Program
     {
         [STAThread]
         static void Main()
@@ -18,31 +21,44 @@ namespace Digital_Notes_Manager
 
             var serviceProvider = ConfigureServices();
 
-            System.Windows.Forms.Application.Run(new DigitalNotesManagerForm());
+            // Resolve the LogIn form from DI container
+            var loginForm = serviceProvider.GetRequiredService<LogIn>();
+
+            // Run the application
+            System.Windows.Forms.Application.Run(loginForm);
         }
 
         private static ServiceProvider ConfigureServices()
         {
             var services = new ServiceCollection();
 
+            // Load configuration from appsettings.json
             var configuration = LoadConfiguration();
             string connectionString = configuration.GetConnectionString("DefaultConnection")!;
 
+            // Register logging
+            services.AddLogging(); // Ensure logging is available
+
+            // Register DbContext with SQL Server configuration
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            // Register Identity with custom User model (User class)
+            services.AddIdentity<User, IdentityRole>(options =>
             {
-                options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireUppercase = true;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequiredLength = 6;
+                options.Password.RequiredLength = 4;
 
                 options.SignIn.RequireConfirmedAccount = false;
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
+
+            services.AddTransient<LogIn>();
+            services.AddTransient<Register>();
 
             return services.BuildServiceProvider();
         }
@@ -57,4 +73,3 @@ namespace Digital_Notes_Manager
         }
     }
 }
-

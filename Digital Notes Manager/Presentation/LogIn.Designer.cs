@@ -44,6 +44,8 @@
             panel2 = new Panel();
             panel3 = new Panel();
             textBox3 = new TextBox();
+            usernameErrorLbl = new Label();
+            passwordErrorLbl = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -144,6 +146,7 @@
             LogInbtn.TabIndex = 7;
             LogInbtn.Text = "Log In";
             LogInbtn.UseVisualStyleBackColor = false;
+            LogInbtn.Click += LogInbtn_Click;
             // 
             // SignUpbtn
             // 
@@ -205,12 +208,36 @@
             textBox3.Size = new Size(0, 27);
             textBox3.TabIndex = 4;
             // 
+            // usernameErrorLbl
+            // 
+            usernameErrorLbl.AutoSize = true;
+            usernameErrorLbl.ForeColor = Color.Red;
+            usernameErrorLbl.Location = new Point(479, 240);
+            usernameErrorLbl.Name = "usernameErrorLbl";
+            usernameErrorLbl.Size = new Size(193, 20);
+            usernameErrorLbl.TabIndex = 15;
+            usernameErrorLbl.Text = "Please enter valid username";
+            usernameErrorLbl.Visible = false;
+            // 
+            // passwordErrorLbl
+            // 
+            passwordErrorLbl.AutoSize = true;
+            passwordErrorLbl.ForeColor = Color.Red;
+            passwordErrorLbl.Location = new Point(482, 361);
+            passwordErrorLbl.Name = "passwordErrorLbl";
+            passwordErrorLbl.Size = new Size(192, 20);
+            passwordErrorLbl.TabIndex = 16;
+            passwordErrorLbl.Text = "Please enter valid password";
+            passwordErrorLbl.Visible = false;
+            // 
             // LogIn
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(784, 489);
+            Controls.Add(passwordErrorLbl);
+            Controls.Add(usernameErrorLbl);
             Controls.Add(textBox3);
             Controls.Add(panel3);
             Controls.Add(panel2);
@@ -257,5 +284,7 @@
         private Panel panel2;
         private Panel panel3;
         private TextBox textBox3;
+        private Label usernameErrorLbl;
+        private Label passwordErrorLbl;
     }
 }

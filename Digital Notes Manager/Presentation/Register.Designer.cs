@@ -49,6 +49,9 @@
             ConfirmPasswordtxt = new TextBox();
             pictureBox5 = new PictureBox();
             LogInlkl = new LinkLabel();
+            usernameErrorLbl = new Label();
+            passwordErrorLbl = new Label();
+            confirmPassErrorLbl = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel3.SuspendLayout();
@@ -95,7 +98,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(526, 77);
+            label2.Location = new Point(527, 83);
             label2.Name = "label2";
             label2.Size = new Size(97, 23);
             label2.TabIndex = 17;
@@ -105,7 +108,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(526, 183);
+            label1.Location = new Point(527, 192);
             label1.Name = "label1";
             label1.Size = new Size(85, 23);
             label1.TabIndex = 16;
@@ -180,11 +183,12 @@
             SignUpbtn.TabIndex = 21;
             SignUpbtn.Text = "Sign Up";
             SignUpbtn.UseVisualStyleBackColor = false;
+            SignUpbtn.Click += SignUpbtn_Click;
             // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(490, 181);
+            pictureBox3.Location = new Point(491, 190);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(30, 30);
             pictureBox3.TabIndex = 20;
@@ -193,7 +197,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(490, 72);
+            pictureBox2.Location = new Point(491, 78);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(30, 30);
             pictureBox2.TabIndex = 19;
@@ -203,7 +207,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(528, 286);
+            label4.Location = new Point(527, 295);
             label4.Name = "label4";
             label4.Size = new Size(156, 23);
             label4.TabIndex = 27;
@@ -239,7 +243,7 @@
             // pictureBox5
             // 
             pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(492, 284);
+            pictureBox5.Location = new Point(491, 293);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(30, 30);
             pictureBox5.TabIndex = 29;
@@ -260,12 +264,48 @@
             LogInlkl.Text = "Already Have An Account?";
             LogInlkl.LinkClicked += LogInlkl_LinkClicked;
             // 
+            // usernameErrorLbl
+            // 
+            usernameErrorLbl.AutoSize = true;
+            usernameErrorLbl.ForeColor = Color.Red;
+            usernameErrorLbl.Location = new Point(490, 157);
+            usernameErrorLbl.Name = "usernameErrorLbl";
+            usernameErrorLbl.Size = new Size(193, 20);
+            usernameErrorLbl.TabIndex = 33;
+            usernameErrorLbl.Text = "Please enter valid username";
+            usernameErrorLbl.Visible = false;
+            // 
+            // passwordErrorLbl
+            // 
+            passwordErrorLbl.AutoSize = true;
+            passwordErrorLbl.ForeColor = Color.Red;
+            passwordErrorLbl.Location = new Point(493, 267);
+            passwordErrorLbl.Name = "passwordErrorLbl";
+            passwordErrorLbl.Size = new Size(192, 20);
+            passwordErrorLbl.TabIndex = 34;
+            passwordErrorLbl.Text = "Please enter valid password";
+            passwordErrorLbl.Visible = false;
+            // 
+            // confirmPassErrorLbl
+            // 
+            confirmPassErrorLbl.AutoSize = true;
+            confirmPassErrorLbl.ForeColor = Color.Red;
+            confirmPassErrorLbl.Location = new Point(495, 370);
+            confirmPassErrorLbl.Name = "confirmPassErrorLbl";
+            confirmPassErrorLbl.Size = new Size(155, 20);
+            confirmPassErrorLbl.TabIndex = 35;
+            confirmPassErrorLbl.Text = "Password is not match";
+            confirmPassErrorLbl.Visible = false;
+            // 
             // Register
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(831, 495);
+            Controls.Add(confirmPassErrorLbl);
+            Controls.Add(passwordErrorLbl);
+            Controls.Add(usernameErrorLbl);
             Controls.Add(LogInlkl);
             Controls.Add(label4);
             Controls.Add(textBox4);
@@ -324,5 +364,8 @@
         private TextBox ConfirmPasswordtxt;
         private PictureBox pictureBox5;
         private LinkLabel LogInlkl;
+        private Label usernameErrorLbl;
+        private Label passwordErrorLbl;
+        private Label confirmPassErrorLbl;
     }
 }
