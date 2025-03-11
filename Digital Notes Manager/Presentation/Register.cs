@@ -1,4 +1,6 @@
-﻿using Digital_Notes_Manager.Domain.Models;
+﻿using Digital_Notes_Manager.Application.DTOs;
+using Digital_Notes_Manager.Application.Services;
+using Digital_Notes_Manager.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -11,35 +13,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Digital_Notes_Manager.Presentation
 {
     public partial class Register : Form
     {
-        private readonly SignInManager<User> _signInManager;
-        private readonly UserManager<User> _userManager;
-        private readonly IUserStore<User> _userStore;
         private readonly IServiceProvider _serviceProvider;
 
-        public Register(
-            SignInManager<User> signInManager,
-            UserManager<User> userManager,
-            IUserStore<User> userStore,
-            IServiceProvider serviceProvider
-            )
+        private readonly UserService _userService;
+
+        public Register(IServiceProvider serviceProvider, UserService userService)
         {
-            _signInManager = signInManager;
-            _userManager = userManager;
-            _userStore = userStore;
             _serviceProvider = serviceProvider;
+            _userService = userService;
 
             InitializeComponent();
         }
+
         private void Registerpb_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
         private void LogInlkl_LinkClicked(object sender, EventArgs e)
         {
             var login = _serviceProvider.GetRequiredService<LogIn>();
@@ -53,44 +48,29 @@ namespace Digital_Notes_Manager.Presentation
             {
                 try
                 {
-                    var user = CreateUser();
+                    UserAuthDTO user = new UserAuthDTO
+                    {
+                        Username = UserNametxt.Text,
+                        Password = Passwordtxt.Text,
+                    };
 
-                    await _userStore.SetUserNameAsync(user, UserNametxt.Text, CancellationToken.None);
-
-                    var result = await _userManager.CreateAsync(user, ConfirmPasswordtxt.Text);
+                    var result = await _userService.RegisterUserAsync(user);
 
                     if (result.Succeeded)
                     {
-                        if (result.Succeeded)
-                        {
-                            var login = _serviceProvider.GetRequiredService<LogIn>();
-                            this.Hide();
-                            login.Show();
-                        }
+                        var login = _serviceProvider.GetRequiredService<LogIn>();
+                        this.Hide();
+                        login.Show();
                     }
                     else
                     {
-                        MessageBox.Show("Invalid username or password.", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("wrong username or password.", "Login failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("An error occurred. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-        }
-
-        private User CreateUser()
-        {
-            try
-            {
-                return Activator.CreateInstance<User>();
-            }
-            catch
-            {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
-                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
 

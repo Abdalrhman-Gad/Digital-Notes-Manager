@@ -1,4 +1,7 @@
-﻿using Digital_Notes_Manager.Domain.Models;
+﻿using Digital_Notes_Manager.Application.DTOs;
+using Digital_Notes_Manager.Application.Services;
+using Digital_Notes_Manager.Domain.Exceptions;
+using Digital_Notes_Manager.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -9,12 +12,12 @@ namespace Digital_Notes_Manager.Presentation
 {
     public partial class LogIn : Form
     {
-        private readonly UserManager<User> _userManager;
+        private readonly UserService _userService;
         private readonly IServiceProvider _serviceProvider;
 
-        public LogIn(UserManager<User> userManager,IServiceProvider serviceProvider)
+        public LogIn(UserService userService,IServiceProvider serviceProvider)
         {
-            _userManager = userManager;
+            _userService = userService;
             _serviceProvider = serviceProvider;
 
             InitializeComponent();
@@ -38,32 +41,29 @@ namespace Digital_Notes_Manager.Presentation
             {
                 try
                 {
-                    var userName = UserNametxt.Text;
-                    var password = Passwordtxt.Text;
-
-                    // Get the user from UserManager
-                    var user = await _userManager.FindByNameAsync(userName);
-                    if (user != null)
+                    var user = new UserAuthDTO
                     {
-                        // Verify the password using the PasswordHasher
-                        var result = await _userManager.CheckPasswordAsync(user, password);
+                        Username = UserNametxt.Text,
+                        Password = Passwordtxt.Text,
+                    };
 
-                        if (result)
-                        {
-                            // Password is correct
-                            this.Hide(); // Close the LogIn form
-                            MainForm mainForm = new MainForm(); // Open MainForm
-                            mainForm.Show();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Invalid username or password.", "Register failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                    var result = await _userService.LoginUserAsync(user);
+
+                    if (result)
+                    {
+                        this.Hide();
+                        var mainForm = _serviceProvider.GetRequiredService<MainForm>();
+                        mainForm.Show();
                     }
                     else
                     {
-                        MessageBox.Show("Invalid username or password.", "User not found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Invalid username or password.", "Register failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
+
+                }
+                catch (UserNotFoundException)
+                {
+                    MessageBox.Show("Invalid username or password.", "User not found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 catch (Exception)
                 {

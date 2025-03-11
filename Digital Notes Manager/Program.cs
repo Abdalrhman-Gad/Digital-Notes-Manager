@@ -1,3 +1,4 @@
+using Digital_Notes_Manager.Application.Services;
 using Digital_Notes_Manager.Domain.Models;
 using Digital_Notes_Manager.Infrastructure;
 using Digital_Notes_Manager.Presentation;
@@ -21,29 +22,28 @@ namespace Digital_Notes_Manager
 
             var serviceProvider = ConfigureServices();
 
-            // Resolve the LogIn form from DI container
             var loginForm = serviceProvider.GetRequiredService<LogIn>();
+            var mainForm = serviceProvider.GetRequiredService<MainForm>();
 
-            // Run the application
-            System.Windows.Forms.Application.Run(loginForm);
+            var userService = serviceProvider.GetRequiredService<UserService>();
+
+            MessageBox.Show(userService.GetLoggedInUser()?.ToString());
+
+            Form form = userService.GetLoggedInUser() == null ? loginForm : mainForm;
+
+            System.Windows.Forms.Application.Run(form);
         }
 
         private static ServiceProvider ConfigureServices()
         {
             var services = new ServiceCollection();
 
-            // Load configuration from appsettings.json
             var configuration = LoadConfiguration();
             string connectionString = configuration.GetConnectionString("DefaultConnection")!;
 
-            // Register logging
-            services.AddLogging(); // Ensure logging is available
-
-            // Register DbContext with SQL Server configuration
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
-            // Register Identity with custom User model (User class)
             services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = false;
@@ -57,8 +57,14 @@ namespace Digital_Notes_Manager
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
+            services.AddLogging();
+
+            services.AddSingleton<UserService>();
+
             services.AddTransient<LogIn>();
             services.AddTransient<Register>();
+            services.AddTransient<MainForm>();
+
 
             return services.BuildServiceProvider();
         }

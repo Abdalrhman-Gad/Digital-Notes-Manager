@@ -6,14 +6,10 @@ using System.Threading.Tasks;
 
 namespace Digital_Notes_Manager.Application.Interfaces
 {
-    public interface ICrudService<T>
+    public interface ICrudService<TAdd>
     {
-        Task AddAsync(T item);
+        Task<bool> UpdateAsync(TAdd item);
 
-        Task UpdateAsync(T item);
-
-        Task DeleteAsync(int itemId);
-
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<bool> DeleteAsync(int itemId);
     }
 }

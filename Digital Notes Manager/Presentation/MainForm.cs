@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Digital_Notes_Manager.Application.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,13 +13,18 @@ namespace Digital_Notes_Manager.Presentation
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        private readonly UserService _userService;
+
+        public MainForm(UserService userService)
         {
+            _userService = userService;
+
             InitializeComponent();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            _userService.UserLogout();
             this.Close();
         }
 

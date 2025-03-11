@@ -10,22 +10,12 @@ namespace Digital_Notes_Manager.Application.Services
 {
     public class NoteService : INoteService
     {
-        public Task AddAsync(NoteDto item)
+        public Task<bool> DeleteAsync(int itemId)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(int itemId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<NoteDto>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(NoteDto item)
+        public Task<bool> UpdateAsync(NoteDto item)
         {
             throw new NotImplementedException();
         }
