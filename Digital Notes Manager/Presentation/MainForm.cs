@@ -3,17 +3,6 @@ using Digital_Notes_Manager.Application.Services;
 using Digital_Notes_Manager.Domain.Enums;
 using Digital_Notes_Manager.Presentation.CustomControlls;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
 namespace Digital_Notes_Manager.Presentation
 {
     public partial class MainForm : Form
@@ -123,11 +112,9 @@ namespace Digital_Notes_Manager.Presentation
         }
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             NoteEditorForm noteEditorForm = new NoteEditorForm();
             noteEditorForm.MdiParent = this;
             noteEditorForm.Show();
-
         }
 
         private void cascadeToolStripMenuItem_Click(object sender, EventArgs e)

@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
-namespace TRY
+namespace Digital_Notes_Manager.Presentation
 {
     public partial class NoteEditorForm : Form
     {

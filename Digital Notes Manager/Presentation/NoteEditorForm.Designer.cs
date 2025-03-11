@@ -1,4 +1,4 @@
-﻿namespace TRY
+﻿namespace Digital_Notes_Manager.Presentation
 {
    
         partial class NoteEditorForm
