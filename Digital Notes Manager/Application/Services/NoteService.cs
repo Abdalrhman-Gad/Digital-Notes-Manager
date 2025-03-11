@@ -68,7 +68,7 @@ namespace Digital_Notes_Manager.Application.Services
 
         public Task<List<NoteDto>> GetAllNotes()
         {
-            return GetNotesAsync(n => n.UserID == _userId);
+            return GetNotesAsync();
         }
 
         public async Task<NoteDto> GetNoteByIdAsync(int noteId)
@@ -101,12 +101,16 @@ namespace Digital_Notes_Manager.Application.Services
             throw new NotImplementedException();
         }
 
-        private Task<List<NoteDto>> GetNotesAsync(Expression<Func<Note, bool>> predicate)
+        private Task<List<NoteDto>> GetNotesAsync(Expression<Func<Note, bool>>? predicate = null)
         {
-            return _context.Notes
-                .Where(n => n.UserID == _userId && predicate.Compile()(n))
-                .Select(NoteToDto)
-                .ToListAsync();
+            var query = _context.Notes.Where(n => n.UserID == _userId);
+
+            if (predicate != null)
+            {
+                query = query.Where(predicate);
+            }
+
+            return query.Select(NoteToDto).ToListAsync();
         }
     }
 }

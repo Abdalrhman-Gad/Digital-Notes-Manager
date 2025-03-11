@@ -101,12 +101,8 @@ namespace Digital_Notes_Manager.Application.Services
 
         public async Task<bool> DeleteAsync(int userId)
         {
-            var user = _context.Users.Find(userId)!;
-
-            if (user == null)
-            {
-                throw new UserNotFoundException($"User not found with id:{userId}");
-            }
+            var user = _context.Users.Find(userId)!
+                ?? throw new UserNotFoundException($"User not found with id:{userId}");
 
             await _userManager.DeleteAsync(user);
             await _context.SaveChangesAsync();
