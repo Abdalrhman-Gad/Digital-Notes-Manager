@@ -27,8 +27,6 @@ namespace Digital_Notes_Manager
 
             var userService = serviceProvider.GetRequiredService<UserService>();
 
-            MessageBox.Show(userService.GetLoggedInUser()?.ToString());
-
             Form form = userService.GetLoggedInUser() == null ? loginForm : mainForm;
 
             System.Windows.Forms.Application.Run(form);

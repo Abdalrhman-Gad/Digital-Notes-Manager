@@ -87,8 +87,7 @@ namespace Digital_Notes_Manager.Application.Services
             catch
             {
                 throw new InvalidOperationException($"Can't create an instance of '{nameof(Domain.Models.User)}'. " +
-                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+                    $"Ensure that '{nameof(Domain.Models.User)}' is not an abstract class and has a parameterless constructor");
             }
         }
 
@@ -100,7 +99,7 @@ namespace Digital_Notes_Manager.Application.Services
                 var result = await _userManager.CheckPasswordAsync(user, _user.Password);
                 if (result)
                 {
-                    SettingsManager.SaveUser(new UserDTO { UserID = _user.UserID, Username = _user.Username });
+                    SettingsManager.SaveUser(new UserDTO { UserID = user.Id, Username = user.UserName! });
                     return true;
                 }
                 else

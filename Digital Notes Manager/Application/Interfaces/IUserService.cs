@@ -10,13 +10,13 @@ namespace Digital_Notes_Manager.Application.Interfaces
 {
     public interface IUserService : ICrudService<UserAuthDTO>
     {
-        UserDTO? GetLoggedInUser();
-
         Task<IdentityResult> RegisterUserAsync(UserAuthDTO item);
 
-        void UserLogout();
-
         Task<bool> LoginUserAsync(UserAuthDTO _user);
+
+        UserDTO? GetLoggedInUser();
+
+        void UserLogout();
 
         bool IsUserLogin();
     }

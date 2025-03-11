@@ -13,6 +13,7 @@ namespace Digital_Notes_Manager.Presentation
     public partial class LogIn : Form
     {
         private readonly UserService _userService;
+
         private readonly IServiceProvider _serviceProvider;
 
         public LogIn(UserService userService,IServiceProvider serviceProvider)
