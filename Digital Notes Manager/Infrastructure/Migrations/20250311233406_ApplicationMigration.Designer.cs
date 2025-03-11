@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Digital_Notes_Manager.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250311142446_ApplicationMigration")]
+    [Migration("20250311233406_ApplicationMigration")]
     partial class ApplicationMigration
     {
         /// <inheritdoc />
@@ -44,7 +44,9 @@ namespace Digital_Notes_Manager.Infrastructure.Migrations
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<DateTime?>("ReminderDate")
                         .HasColumnType("datetime2");

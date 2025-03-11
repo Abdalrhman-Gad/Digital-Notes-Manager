@@ -15,12 +15,14 @@ namespace Digital_Notes_Manager.Application.Interfaces
 
         Task<NoteDto> GetNoteByIdAsync(int noteId);
 
-        Task<bool> SaveNoteContentAsync(string content);
+        Task SaveNoteContentAsync(string filePath, string content);
 
         Task<string> LoadNoteContentAsync(string filePath);
 
         Task<List<NoteDto>> SearchByContent(string content);
 
         Task<List<NoteDto>> SearchByCategory(string categoty);
+
+        Task<List<NoteDto>> SearchByTitle(string categoty);
     }
 }

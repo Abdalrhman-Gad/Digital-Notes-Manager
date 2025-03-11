@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Digital_Notes_Manager.Application.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +13,13 @@ namespace Digital_Notes_Manager.Presentation
 {
     public partial class SaveNotes: Form
     {
+        private readonly NoteService noteService;
+
         public SaveNotes()
         {
             InitializeComponent();
         }
-        private void openbtn_Click(object sender, EventArgs e)
+        private async void openbtn_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = "Text files (.txt)|.txt|All files (.)|.";
             openFileDialog1.Title = "Open Note File";
@@ -26,7 +29,7 @@ namespace Digital_Notes_Manager.Presentation
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     string filePath = openFileDialog1.FileName;
-                    string fileContent = File.ReadAllText(filePath);
+                    string fileContent = await noteService.LoadNoteContentAsync(filePath);
 
                     richTextBox1.Text = fileContent;
                 }
@@ -48,7 +51,8 @@ namespace Digital_Notes_Manager.Presentation
                     string filePath = saveFileDialog1.FileName;
                     string fileContent = richTextBox1.Text;
 
-                    File.WriteAllText(filePath, fileContent);
+                    noteService.SaveNoteContentAsync(filePath, fileContent);
+
                     MessageBox.Show("File saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }

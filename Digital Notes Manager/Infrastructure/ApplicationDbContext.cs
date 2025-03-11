@@ -17,6 +17,15 @@ namespace Digital_Notes_Manager.Infrastructure
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Note>()
+                .Property(n => n.CreationDate)
+                .HasDefaultValueSql("GETDATE()");
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public virtual DbSet<Note> Notes { get; set; }
     }
 }

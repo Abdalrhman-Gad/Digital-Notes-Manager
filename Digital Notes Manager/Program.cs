@@ -55,6 +55,7 @@ namespace Digital_Notes_Manager
             services.AddLogging();
 
             services.AddSingleton<UserService>();
+            services.AddSingleton<NoteService>();
 
             services.AddTransient<LogIn>();
             services.AddTransient<Register>();

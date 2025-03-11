@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace Digital_Notes_Manager.Domain.Models
         [StringLength(maximumLength: 20, MinimumLength = 1)]
         public string Category { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime CreationDate { get; set; } = DateTime.Now;
 
         public DateTime? ReminderDate { get; set; }

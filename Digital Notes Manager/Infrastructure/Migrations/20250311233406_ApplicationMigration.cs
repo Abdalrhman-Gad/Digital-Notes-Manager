@@ -165,7 +165,7 @@ namespace Digital_Notes_Manager.Infrastructure.Migrations
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Content = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Category = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     ReminderDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UserID = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },

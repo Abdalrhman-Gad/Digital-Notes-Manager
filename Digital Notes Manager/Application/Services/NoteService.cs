@@ -11,6 +11,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Digital_Notes_Manager.Application.Services
 {
@@ -22,19 +23,16 @@ namespace Digital_Notes_Manager.Application.Services
 
         private static readonly Expression<Func<Note, NoteDto>> NoteToDto = n => MapHelper.NoteToDto(n);
 
-        private string _userId;
-
         public NoteService(ApplicationDbContext context, UserService userService)
         {
             _context = context;
             _userService = userService;
-            _userId = _userService.GetLoggedInUser()!.UserID;
         }
 
         public async Task AddNoteAsync(NoteDto _note)
         {
             var note = MapHelper.DtoToNote(_note);
-            note.UserID = _userId;
+            note.UserID = _userService.GetLoggedInUser()!.UserID;
 
             await _context.Notes.AddAsync(note);
             await _context.SaveChangesAsync();
@@ -93,17 +91,17 @@ namespace Digital_Notes_Manager.Application.Services
 
         public Task<string> LoadNoteContentAsync(string filePath)
         {
-            throw new NotImplementedException();
+            return File.ReadAllTextAsync(filePath);
         }
 
-        public Task<bool> SaveNoteContentAsync(string content)
+        public Task SaveNoteContentAsync(string filePath, string content)
         {
-            throw new NotImplementedException();
+            return File.WriteAllTextAsync(filePath, content);
         }
 
         private Task<List<NoteDto>> GetNotesAsync(Expression<Func<Note, bool>>? predicate = null)
         {
-            var query = _context.Notes.Where(n => n.UserID == _userId);
+            var query = _context.Notes.Where(n => n.UserID == _userService.GetLoggedInUser()!.UserID);
 
             if (predicate != null)
             {
@@ -111,6 +109,11 @@ namespace Digital_Notes_Manager.Application.Services
             }
 
             return query.Select(NoteToDto).ToListAsync();
+        }
+
+        public Task<List<NoteDto>> SearchByTitle(string title)
+        {
+            return GetNotesAsync(n => n.Title == title);
         }
     }
 }
