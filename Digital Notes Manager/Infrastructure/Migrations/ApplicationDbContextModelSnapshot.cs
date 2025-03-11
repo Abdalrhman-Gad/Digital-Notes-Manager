@@ -51,12 +51,13 @@ namespace Digital_Notes_Manager.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("UserID")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("NoteID");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Notes");
                 });
@@ -263,7 +264,9 @@ namespace Digital_Notes_Manager.Infrastructure.Migrations
                 {
                     b.HasOne("Digital_Notes_Manager.Domain.Models.User", "User")
                         .WithMany("Notes")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

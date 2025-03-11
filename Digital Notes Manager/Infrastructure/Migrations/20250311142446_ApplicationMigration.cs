@@ -167,16 +167,17 @@ namespace Digital_Notes_Manager.Infrastructure.Migrations
                     Category = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ReminderDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserID = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Notes", x => x.NoteID);
                     table.ForeignKey(
-                        name: "FK_Notes_AspNetUsers_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Notes_AspNetUsers_UserID",
+                        column: x => x.UserID,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -219,9 +220,9 @@ namespace Digital_Notes_Manager.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notes_UserId",
+                name: "IX_Notes_UserID",
                 table: "Notes",
-                column: "UserId");
+                column: "UserID");
         }
 
         /// <inheritdoc />

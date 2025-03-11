@@ -4,16 +4,7 @@ using Digital_Notes_Manager.Domain.Exceptions;
 using Digital_Notes_Manager.Domain.Models;
 using Digital_Notes_Manager.Infrastructure;
 using Digital_Notes_Manager.Infrastructure.Settings;
-using Digital_Notes_Manager.Presentation;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Digital_Notes_Manager.Application.Services
 {
