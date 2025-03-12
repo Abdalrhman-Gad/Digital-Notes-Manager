@@ -19,6 +19,7 @@ namespace Digital_Notes_Manager.Presentation
         {
             InitializeComponent();
         }
+
         private async void openbtn_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = "Text files (.txt)|.txt|All files (.)|.";

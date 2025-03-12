@@ -157,20 +157,20 @@
             // notesListBtn
             // 
             notesListBtn.Name = "notesListBtn";
-            notesListBtn.Size = new Size(224, 28);
+            notesListBtn.Size = new Size(178, 28);
             notesListBtn.Text = "Notes List";
             // 
             // cascadeBtn
             // 
             cascadeBtn.Name = "cascadeBtn";
-            cascadeBtn.Size = new Size(224, 28);
+            cascadeBtn.Size = new Size(178, 28);
             cascadeBtn.Text = "Cascade";
             cascadeBtn.Click += cascadeBtn_Click;
             // 
             // tileBtn
             // 
             tileBtn.Name = "tileBtn";
-            tileBtn.Size = new Size(224, 28);
+            tileBtn.Size = new Size(178, 28);
             tileBtn.Text = "Tile";
             tileBtn.Click += tileBtn_Click;
             // 
@@ -211,9 +211,11 @@
             notesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             notesDataGridView.Location = new Point(3, 40);
             notesDataGridView.Name = "notesDataGridView";
+            notesDataGridView.ReadOnly = true;
             notesDataGridView.RowHeadersWidth = 51;
             notesDataGridView.Size = new Size(978, 432);
             notesDataGridView.TabIndex = 3;
+            notesDataGridView.CellDoubleClick += notesDataGridView_CellDoubleClick;
             // 
             // appBar
             // 

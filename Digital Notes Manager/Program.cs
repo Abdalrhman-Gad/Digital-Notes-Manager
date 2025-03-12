@@ -60,6 +60,8 @@ namespace Digital_Notes_Manager
             services.AddTransient<LogIn>();
             services.AddTransient<Register>();
             services.AddTransient<MainForm>();
+            services.AddTransient<NoteDetailsForm>();
+            services.AddTransient<NoteEditorForm>();
 
 
             return services.BuildServiceProvider();

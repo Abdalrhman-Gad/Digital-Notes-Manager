@@ -17,6 +17,8 @@ namespace Digital_Notes_Manager.Presentation
 
         private CategorySelector categorySelector;
 
+        private List<NoteDto> notes;
+
         public MainForm(NoteService noteService, UserService userService, IServiceProvider serviceProvider)
         {
             _userService = userService;
@@ -24,6 +26,8 @@ namespace Digital_Notes_Manager.Presentation
             _noteService = noteService;
 
             categorySelector = new();
+
+            notes = [];
 
             InitializeComponent();
         }
@@ -38,7 +42,9 @@ namespace Digital_Notes_Manager.Presentation
 
             comboBoxHost.Visible = false;
 
-            await ShowDefaultTasksAsync();
+            notes = await _noteService.GetAllNotes();
+
+            ShowTasks(notes);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -51,52 +57,43 @@ namespace Digital_Notes_Manager.Presentation
 
         }
 
-        private void Test(object sender, Category category)
-        {
-            MessageBox.Show($"Category changed to: {category}");
-        }
-
         private void ShowTasks(List<NoteDto> notes)
         {
             notesDataGridView.DataSource = notes;
-        }
 
-        private async Task ShowDefaultTasksAsync()
-        {
-            var tasks = await _noteService.GetAllNotes();
-            ShowTasks(tasks);
+            CustomizeDataGridView();
         }
 
         private async void searchBtn_Click(object sender, EventArgs e)
         {
-            List<NoteDto> tasks = [];
+            List<NoteDto> filteredNotes = [];
 
             switch (searchBy)
             {
                 case SearchBy.Content:
                     if (!string.IsNullOrEmpty(searchTxt.Text))
                     {
-                        tasks = await _noteService.SearchByContent(searchTxt.Text);
+                        filteredNotes = await _noteService.SearchByContent(searchTxt.Text);
                     }
                     break;
 
                 case SearchBy.Category:
                     if (categorySelector.categoriesComboBox.SelectedItem is Category selectedCategory)
                     {
-                        tasks = await _noteService.SearchByCategory(selectedCategory.ToString());
+                        filteredNotes = await _noteService.SearchByCategory(selectedCategory.ToString());
                     }
                     break;
 
                 default:
                     if (!string.IsNullOrEmpty(searchTxt.Text))
                     {
-                        tasks = await _noteService.SearchByTitle(searchTxt.Text);
+                        filteredNotes = await _noteService.SearchByTitle(searchTxt.Text);
                     }
                     break;
             }
 
-            if (tasks.Any())
-                ShowTasks(tasks);
+            if (filteredNotes.Any())
+                ShowTasks(filteredNotes);
             else
                 MessageBox.Show("No matching tasks found.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -117,10 +114,9 @@ namespace Digital_Notes_Manager.Presentation
 
         private void newBtn_Click(object sender, EventArgs e)
         {
-            NoteEditorForm noteEditorForm = new()
-            {
-                MdiParent = this
-            };
+            NoteEditorForm noteEditorForm =
+                _serviceProvider.GetRequiredService<NoteEditorForm>();
+
             noteEditorForm.Show();
         }
 
@@ -132,6 +128,58 @@ namespace Digital_Notes_Manager.Presentation
         private void tileBtn_Click(object sender, EventArgs e)
         {
             this.LayoutMdi(MdiLayout.TileHorizontal);
+        }
+
+        private void CustomizeDataGridView()
+        {
+            // Enable double buffering for smoother scrolling
+            typeof(DataGridView).InvokeMember("DoubleBuffered",
+                System.Reflection.BindingFlags.NonPublic |
+                System.Reflection.BindingFlags.Instance |
+                System.Reflection.BindingFlags.SetProperty,
+                null, notesDataGridView, [true]);
+
+            // Header styling
+            notesDataGridView.EnableHeadersVisualStyles = false;
+            notesDataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(50, 50, 50);
+            notesDataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            notesDataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            notesDataGridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // Center align header text
+
+            // Row styling (cell alignment and colors)
+            notesDataGridView.DefaultCellStyle.BackColor = Color.White;
+            notesDataGridView.DefaultCellStyle.ForeColor = Color.Black;
+            notesDataGridView.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            notesDataGridView.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter; // Center align cell text
+            notesDataGridView.DefaultCellStyle.SelectionBackColor = Color.FromArgb(30, 144, 255);
+            notesDataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            // Grid styling
+            notesDataGridView.GridColor = Color.LightGray;
+            notesDataGridView.BorderStyle = BorderStyle.Fixed3D;
+            notesDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            notesDataGridView.RowHeadersVisible = false;
+
+            // Alternating row colors
+            notesDataGridView.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 240);
+
+            // Auto size columns
+            notesDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            notesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
+
+        private void notesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var selectedNote = (NoteDto)notesDataGridView.Rows[e.RowIndex].DataBoundItem;
+
+                var noteDetailsForm = _serviceProvider.GetRequiredService<NoteDetailsForm>();
+
+                noteDetailsForm.Note = selectedNote;
+
+                noteDetailsForm.ShowDialog();
+            }
         }
     }
 }

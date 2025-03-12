@@ -29,32 +29,40 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NoteEditorForm));
             NoteEditorpn = new Panel();
-            Savebtn = new Button();
+            loadBtn = new PictureBox();
+            saveBtn = new PictureBox();
+            categorySelector = new CustomControlls.CategorySelector();
+            addBtn = new Button();
             ReminderDatelbl = new Label();
-            Notedtb = new DateTimePicker();
-            richTextBox1 = new RichTextBox();
-            textBox1 = new TextBox();
+            reminderDate = new DateTimePicker();
+            contentTxt = new RichTextBox();
+            titleTxt = new TextBox();
             Titlelbl = new Label();
             Categorylbl = new Label();
             FontStylegb = new GroupBox();
             btnBold = new CheckBox();
             btnItalic = new CheckBox();
             btnUnderline = new CheckBox();
-            categorySelector1 = new CustomControlls.CategorySelector();
+            openFileDialog1 = new OpenFileDialog();
             NoteEditorpn.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)loadBtn).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)saveBtn).BeginInit();
             FontStylegb.SuspendLayout();
             SuspendLayout();
             // 
             // NoteEditorpn
             // 
             NoteEditorpn.BackColor = Color.White;
-            NoteEditorpn.Controls.Add(categorySelector1);
-            NoteEditorpn.Controls.Add(Savebtn);
+            NoteEditorpn.Controls.Add(loadBtn);
+            NoteEditorpn.Controls.Add(saveBtn);
+            NoteEditorpn.Controls.Add(categorySelector);
+            NoteEditorpn.Controls.Add(addBtn);
             NoteEditorpn.Controls.Add(ReminderDatelbl);
-            NoteEditorpn.Controls.Add(Notedtb);
-            NoteEditorpn.Controls.Add(richTextBox1);
-            NoteEditorpn.Controls.Add(textBox1);
+            NoteEditorpn.Controls.Add(reminderDate);
+            NoteEditorpn.Controls.Add(contentTxt);
+            NoteEditorpn.Controls.Add(titleTxt);
             NoteEditorpn.Controls.Add(Titlelbl);
             NoteEditorpn.Controls.Add(Categorylbl);
             NoteEditorpn.Controls.Add(FontStylegb);
@@ -64,17 +72,52 @@
             NoteEditorpn.Size = new Size(538, 691);
             NoteEditorpn.TabIndex = 0;
             // 
-            // Savebtn
+            // loadBtn
             // 
-            Savebtn.BackColor = Color.FromArgb(38, 50, 56);
-            Savebtn.Cursor = Cursors.Hand;
-            Savebtn.ForeColor = Color.White;
-            Savebtn.Location = new Point(12, 622);
-            Savebtn.Name = "Savebtn";
-            Savebtn.Size = new Size(492, 43);
-            Savebtn.TabIndex = 1;
-            Savebtn.Text = "Save";
-            Savebtn.UseVisualStyleBackColor = false;
+            loadBtn.BackgroundImageLayout = ImageLayout.Center;
+            loadBtn.Image = (Image)resources.GetObject("loadBtn.Image");
+            loadBtn.Location = new Point(471, 81);
+            loadBtn.Name = "loadBtn";
+            loadBtn.Size = new Size(33, 30);
+            loadBtn.SizeMode = PictureBoxSizeMode.StretchImage;
+            loadBtn.TabIndex = 10;
+            loadBtn.TabStop = false;
+            loadBtn.Click += loadBtn_Click;
+            // 
+            // saveBtn
+            // 
+            saveBtn.BackgroundImageLayout = ImageLayout.Center;
+            saveBtn.Image = (Image)resources.GetObject("saveBtn.Image");
+            saveBtn.Location = new Point(471, 17);
+            saveBtn.Name = "saveBtn";
+            saveBtn.Size = new Size(33, 30);
+            saveBtn.SizeMode = PictureBoxSizeMode.StretchImage;
+            saveBtn.TabIndex = 9;
+            saveBtn.TabStop = false;
+            saveBtn.Click += saveBtn_Click;
+            // 
+            // categorySelector
+            // 
+            categorySelector.Location = new Point(159, 12);
+            categorySelector.MaximumSize = new Size(153, 28);
+            categorySelector.MinimumSize = new Size(153, 28);
+            categorySelector.Name = "categorySelector";
+            categorySelector.Size = new Size(153, 28);
+            categorySelector.TabIndex = 8;
+            categorySelector.CategoryChanged += Notification;
+            // 
+            // addBtn
+            // 
+            addBtn.BackColor = Color.FromArgb(38, 50, 56);
+            addBtn.Cursor = Cursors.Hand;
+            addBtn.ForeColor = Color.White;
+            addBtn.Location = new Point(12, 622);
+            addBtn.Name = "addBtn";
+            addBtn.Size = new Size(492, 43);
+            addBtn.TabIndex = 1;
+            addBtn.Text = "Add";
+            addBtn.UseVisualStyleBackColor = false;
+            addBtn.Click += addBtn_Click;
             // 
             // ReminderDatelbl
             // 
@@ -86,27 +129,27 @@
             ReminderDatelbl.TabIndex = 7;
             ReminderDatelbl.Text = "ReminderDate";
             // 
-            // Notedtb
+            // reminderDate
             // 
-            Notedtb.Location = new Point(159, 64);
-            Notedtb.Name = "Notedtb";
-            Notedtb.Size = new Size(203, 27);
-            Notedtb.TabIndex = 6;
+            reminderDate.Location = new Point(159, 64);
+            reminderDate.Name = "reminderDate";
+            reminderDate.Size = new Size(203, 27);
+            reminderDate.TabIndex = 6;
             // 
-            // richTextBox1
+            // contentTxt
             // 
-            richTextBox1.Location = new Point(12, 324);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(492, 281);
-            richTextBox1.TabIndex = 5;
-            richTextBox1.Text = "";
+            contentTxt.Location = new Point(12, 324);
+            contentTxt.Name = "contentTxt";
+            contentTxt.Size = new Size(492, 281);
+            contentTxt.TabIndex = 5;
+            contentTxt.Text = "";
             // 
-            // textBox1
+            // titleTxt
             // 
-            textBox1.Location = new Point(159, 127);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(203, 27);
-            textBox1.TabIndex = 4;
+            titleTxt.Location = new Point(159, 127);
+            titleTxt.Name = "titleTxt";
+            titleTxt.Size = new Size(203, 27);
+            titleTxt.TabIndex = 4;
             // 
             // Titlelbl
             // 
@@ -144,7 +187,7 @@
             // btnBold
             // 
             btnBold.AutoSize = true;
-            btnBold.Location = new Point(6, 39);
+            btnBold.Location = new Point(78, 47);
             btnBold.Name = "btnBold";
             btnBold.Size = new Size(62, 24);
             btnBold.TabIndex = 2;
@@ -154,7 +197,7 @@
             // btnItalic
             // 
             btnItalic.AutoSize = true;
-            btnItalic.Location = new Point(129, 39);
+            btnItalic.Location = new Point(201, 47);
             btnItalic.Name = "btnItalic";
             btnItalic.Size = new Size(63, 24);
             btnItalic.TabIndex = 3;
@@ -164,21 +207,16 @@
             // btnUnderline
             // 
             btnUnderline.AutoSize = true;
-            btnUnderline.Location = new Point(265, 39);
+            btnUnderline.Location = new Point(337, 47);
             btnUnderline.Name = "btnUnderline";
             btnUnderline.Size = new Size(95, 24);
             btnUnderline.TabIndex = 4;
             btnUnderline.Text = "Underline";
             btnUnderline.UseVisualStyleBackColor = true;
             // 
-            // categorySelector1
+            // openFileDialog1
             // 
-            categorySelector1.Location = new Point(159, 12);
-            categorySelector1.MaximumSize = new Size(153, 28);
-            categorySelector1.MinimumSize = new Size(153, 28);
-            categorySelector1.Name = "categorySelector1";
-            categorySelector1.Size = new Size(153, 28);
-            categorySelector1.TabIndex = 8;
+            openFileDialog1.FileName = "openFileDialog1";
             // 
             // NoteEditorForm
             // 
@@ -192,8 +230,11 @@
             MinimumSize = new Size(556, 738);
             Name = "NoteEditorForm";
             Text = "Note Editor";
+            Load += NoteEditorForm_Load;
             NoteEditorpn.ResumeLayout(false);
             NoteEditorpn.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)loadBtn).EndInit();
+            ((System.ComponentModel.ISupportInitialize)saveBtn).EndInit();
             FontStylegb.ResumeLayout(false);
             FontStylegb.PerformLayout();
             ResumeLayout(false);
@@ -208,11 +249,14 @@
         private CheckBox btnBold;
         private CheckBox btnItalic;
         private CheckBox btnUnderline;
-        private TextBox textBox1;
+        private TextBox titleTxt;
         private Label ReminderDatelbl;
-        private DateTimePicker Notedtb;
-        private RichTextBox richTextBox1;
-        private Button Savebtn;
-        private CustomControlls.CategorySelector categorySelector1;
+        private DateTimePicker reminderDate;
+        private RichTextBox contentTxt;
+        private Button addBtn;
+        private CustomControlls.CategorySelector categorySelector;
+        private PictureBox loadBtn;
+        private PictureBox saveBtn;
+        private OpenFileDialog openFileDialog1;
     }
     }

@@ -101,19 +101,19 @@ namespace Digital_Notes_Manager.Application.Services
 
         private Task<List<NoteDto>> GetNotesAsync(Expression<Func<Note, bool>>? predicate = null)
         {
-            var query = _context.Notes.Where(n => n.UserID == _userService.GetLoggedInUser()!.UserID);
+            var userId = _userService.GetLoggedInUser()!.UserID;
 
-            if (predicate != null)
-            {
-                query = query.Where(predicate);
-            }
-
-            return query.Select(NoteToDto).ToListAsync();
+            return _context.Notes
+                .Where(predicate ?? (n => true))
+                .Where(n => n.UserID == userId)
+                .Select(NoteToDto)
+                .ToListAsync();
         }
+
 
         public Task<List<NoteDto>> SearchByTitle(string title)
         {
-            return GetNotesAsync(n => n.Title == title);
+            return GetNotesAsync(n => n.Title.Contains(title));
         }
     }
 }
