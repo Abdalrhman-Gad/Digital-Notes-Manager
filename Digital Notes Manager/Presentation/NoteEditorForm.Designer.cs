@@ -41,7 +41,7 @@
             btnBold = new CheckBox();
             btnItalic = new CheckBox();
             btnUnderline = new CheckBox();
-            comboBox1 = new ComboBox();
+            categorySelector1 = new CustomControlls.CategorySelector();
             NoteEditorpn.SuspendLayout();
             FontStylegb.SuspendLayout();
             SuspendLayout();
@@ -49,6 +49,7 @@
             // NoteEditorpn
             // 
             NoteEditorpn.BackColor = Color.White;
+            NoteEditorpn.Controls.Add(categorySelector1);
             NoteEditorpn.Controls.Add(Savebtn);
             NoteEditorpn.Controls.Add(ReminderDatelbl);
             NoteEditorpn.Controls.Add(Notedtb);
@@ -57,7 +58,6 @@
             NoteEditorpn.Controls.Add(Titlelbl);
             NoteEditorpn.Controls.Add(Categorylbl);
             NoteEditorpn.Controls.Add(FontStylegb);
-            NoteEditorpn.Controls.Add(comboBox1);
             NoteEditorpn.Dock = DockStyle.Fill;
             NoteEditorpn.Location = new Point(0, 0);
             NoteEditorpn.Name = "NoteEditorpn";
@@ -88,7 +88,7 @@
             // 
             // Notedtb
             // 
-            Notedtb.Location = new Point(159, 62);
+            Notedtb.Location = new Point(159, 64);
             Notedtb.Name = "Notedtb";
             Notedtb.Size = new Size(203, 27);
             Notedtb.TabIndex = 6;
@@ -122,7 +122,7 @@
             // 
             Categorylbl.AutoSize = true;
             Categorylbl.BackColor = Color.White;
-            Categorylbl.Location = new Point(12, 12);
+            Categorylbl.Location = new Point(12, 17);
             Categorylbl.Name = "Categorylbl";
             Categorylbl.Size = new Size(69, 20);
             Categorylbl.TabIndex = 2;
@@ -171,13 +171,14 @@
             btnUnderline.Text = "Underline";
             btnUnderline.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // categorySelector1
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(159, 4);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(203, 28);
-            comboBox1.TabIndex = 0;
+            categorySelector1.Location = new Point(159, 12);
+            categorySelector1.MaximumSize = new Size(153, 28);
+            categorySelector1.MinimumSize = new Size(153, 28);
+            categorySelector1.Name = "categorySelector1";
+            categorySelector1.Size = new Size(153, 28);
+            categorySelector1.TabIndex = 8;
             // 
             // NoteEditorForm
             // 
@@ -202,7 +203,6 @@
 
         private Panel NoteEditorpn;
         private GroupBox FontStylegb;
-        private ComboBox comboBox1;
         private Label Titlelbl;
         private Label Categorylbl;
         private CheckBox btnBold;
@@ -213,5 +213,6 @@
         private DateTimePicker Notedtb;
         private RichTextBox richTextBox1;
         private Button Savebtn;
+        private CustomControlls.CategorySelector categorySelector1;
     }
     }

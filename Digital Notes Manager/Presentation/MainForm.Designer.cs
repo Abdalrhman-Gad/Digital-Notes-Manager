@@ -31,21 +31,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
-            nToolStripMenuItem = new ToolStripMenuItem();
-            openToolStripMenuItem = new ToolStripMenuItem();
-            saveToolStripMenuItem = new ToolStripMenuItem();
-            exitToolStripMenuItem = new ToolStripMenuItem();
+            newBtn = new ToolStripMenuItem();
+            openBtn = new ToolStripMenuItem();
+            saveBtn = new ToolStripMenuItem();
+            exitBtn = new ToolStripMenuItem();
             editToolStripMenuItem = new ToolStripMenuItem();
-            cutToolStripMenuItem = new ToolStripMenuItem();
-            copyToolStripMenuItem = new ToolStripMenuItem();
-            pasteToolStripMenuItem = new ToolStripMenuItem();
-            formatToolStripMenuItem1 = new ToolStripMenuItem();
+            cutBtn = new ToolStripMenuItem();
+            copyBtn = new ToolStripMenuItem();
+            pasteBtn = new ToolStripMenuItem();
+            formatBtn = new ToolStripMenuItem();
             formatToolStripMenuItem = new ToolStripMenuItem();
-            notesListToolStripMenuItem = new ToolStripMenuItem();
-            cascadeToolStripMenuItem = new ToolStripMenuItem();
-            tileToolStripMenuItem = new ToolStripMenuItem();
+            notesListBtn = new ToolStripMenuItem();
+            cascadeBtn = new ToolStripMenuItem();
+            tileBtn = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
-            aboutToolStripMenuItem = new ToolStripMenuItem();
+            aboutBtn = new ToolStripMenuItem();
             panel1 = new Panel();
             panel2 = new Panel();
             notesDataGridView = new DataGridView();
@@ -82,108 +82,111 @@
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { nToolStripMenuItem, openToolStripMenuItem, saveToolStripMenuItem, exitToolStripMenuItem });
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newBtn, openBtn, saveBtn, exitBtn });
             fileToolStripMenuItem.Font = new Font("Segoe UI Black", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             fileToolStripMenuItem.Size = new Size(53, 27);
             fileToolStripMenuItem.Text = "File";
             // 
-            // nToolStripMenuItem
+            // newBtn
             // 
-            nToolStripMenuItem.Name = "nToolStripMenuItem";
-            nToolStripMenuItem.Size = new Size(139, 28);
-            nToolStripMenuItem.Text = "New";
+            newBtn.Name = "newBtn";
+            newBtn.Size = new Size(139, 28);
+            newBtn.Text = "New";
+            newBtn.Click += newBtn_Click;
             // 
-            // openToolStripMenuItem
+            // openBtn
             // 
-            openToolStripMenuItem.Name = "openToolStripMenuItem";
-            openToolStripMenuItem.Size = new Size(139, 28);
-            openToolStripMenuItem.Text = "Open";
+            openBtn.Name = "openBtn";
+            openBtn.Size = new Size(139, 28);
+            openBtn.Text = "Open";
             // 
-            // saveToolStripMenuItem
+            // saveBtn
             // 
-            saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(139, 28);
-            saveToolStripMenuItem.Text = "Save";
+            saveBtn.Name = "saveBtn";
+            saveBtn.Size = new Size(139, 28);
+            saveBtn.Text = "Save";
             // 
-            // exitToolStripMenuItem
+            // exitBtn
             // 
-            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(139, 28);
-            exitToolStripMenuItem.Text = "Exit";
-            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
+            exitBtn.Name = "exitBtn";
+            exitBtn.Size = new Size(139, 28);
+            exitBtn.Text = "Exit";
+            exitBtn.Click += exitToolStripMenuItem_Click;
             // 
             // editToolStripMenuItem
             // 
-            editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cutToolStripMenuItem, copyToolStripMenuItem, pasteToolStripMenuItem, formatToolStripMenuItem1 });
+            editToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cutBtn, copyBtn, pasteBtn, formatBtn });
             editToolStripMenuItem.Font = new Font("Segoe UI Black", 10.2F, FontStyle.Bold);
             editToolStripMenuItem.Name = "editToolStripMenuItem";
             editToolStripMenuItem.Size = new Size(56, 27);
             editToolStripMenuItem.Text = "Edit";
             // 
-            // cutToolStripMenuItem
+            // cutBtn
             // 
-            cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            cutToolStripMenuItem.Size = new Size(154, 28);
-            cutToolStripMenuItem.Text = "Cut";
+            cutBtn.Name = "cutBtn";
+            cutBtn.Size = new Size(154, 28);
+            cutBtn.Text = "Cut";
             // 
-            // copyToolStripMenuItem
+            // copyBtn
             // 
-            copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            copyToolStripMenuItem.Size = new Size(154, 28);
-            copyToolStripMenuItem.Text = "Copy";
+            copyBtn.Name = "copyBtn";
+            copyBtn.Size = new Size(154, 28);
+            copyBtn.Text = "Copy";
             // 
-            // pasteToolStripMenuItem
+            // pasteBtn
             // 
-            pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            pasteToolStripMenuItem.Size = new Size(154, 28);
-            pasteToolStripMenuItem.Text = "Paste";
+            pasteBtn.Name = "pasteBtn";
+            pasteBtn.Size = new Size(154, 28);
+            pasteBtn.Text = "Paste";
             // 
-            // formatToolStripMenuItem1
+            // formatBtn
             // 
-            formatToolStripMenuItem1.Name = "formatToolStripMenuItem1";
-            formatToolStripMenuItem1.Size = new Size(154, 28);
-            formatToolStripMenuItem1.Text = "Format";
+            formatBtn.Name = "formatBtn";
+            formatBtn.Size = new Size(154, 28);
+            formatBtn.Text = "Format";
             // 
             // formatToolStripMenuItem
             // 
-            formatToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { notesListToolStripMenuItem, cascadeToolStripMenuItem, tileToolStripMenuItem });
+            formatToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { notesListBtn, cascadeBtn, tileBtn });
             formatToolStripMenuItem.Font = new Font("Segoe UI Black", 10.2F, FontStyle.Bold);
             formatToolStripMenuItem.Name = "formatToolStripMenuItem";
             formatToolStripMenuItem.Size = new Size(65, 27);
             formatToolStripMenuItem.Text = "View";
             // 
-            // notesListToolStripMenuItem
+            // notesListBtn
             // 
-            notesListToolStripMenuItem.Name = "notesListToolStripMenuItem";
-            notesListToolStripMenuItem.Size = new Size(178, 28);
-            notesListToolStripMenuItem.Text = "Notes List";
+            notesListBtn.Name = "notesListBtn";
+            notesListBtn.Size = new Size(224, 28);
+            notesListBtn.Text = "Notes List";
             // 
-            // cascadeToolStripMenuItem
+            // cascadeBtn
             // 
-            cascadeToolStripMenuItem.Name = "cascadeToolStripMenuItem";
-            cascadeToolStripMenuItem.Size = new Size(178, 28);
-            cascadeToolStripMenuItem.Text = "Cascade";
+            cascadeBtn.Name = "cascadeBtn";
+            cascadeBtn.Size = new Size(224, 28);
+            cascadeBtn.Text = "Cascade";
+            cascadeBtn.Click += cascadeBtn_Click;
             // 
-            // tileToolStripMenuItem
+            // tileBtn
             // 
-            tileToolStripMenuItem.Name = "tileToolStripMenuItem";
-            tileToolStripMenuItem.Size = new Size(178, 28);
-            tileToolStripMenuItem.Text = "Tile";
+            tileBtn.Name = "tileBtn";
+            tileBtn.Size = new Size(224, 28);
+            tileBtn.Text = "Tile";
+            tileBtn.Click += tileBtn_Click;
             // 
             // helpToolStripMenuItem
             // 
-            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem });
+            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutBtn });
             helpToolStripMenuItem.Font = new Font("Segoe UI Black", 10.2F, FontStyle.Bold);
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             helpToolStripMenuItem.Size = new Size(64, 27);
             helpToolStripMenuItem.Text = "Help";
             // 
-            // aboutToolStripMenuItem
+            // aboutBtn
             // 
-            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(147, 28);
-            aboutToolStripMenuItem.Text = "About";
+            aboutBtn.Name = "aboutBtn";
+            aboutBtn.Size = new Size(147, 28);
+            aboutBtn.Text = "About";
             // 
             // panel1
             // 
@@ -352,22 +355,22 @@
         #endregion
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
-        private ToolStripMenuItem nToolStripMenuItem;
-        private ToolStripMenuItem openToolStripMenuItem;
-        private ToolStripMenuItem saveToolStripMenuItem;
-        private ToolStripMenuItem exitToolStripMenuItem;
+        private ToolStripMenuItem newBtn;
+        private ToolStripMenuItem openBtn;
+        private ToolStripMenuItem saveBtn;
+        private ToolStripMenuItem exitBtn;
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem formatToolStripMenuItem;
-        private ToolStripMenuItem cutToolStripMenuItem;
-        private ToolStripMenuItem copyToolStripMenuItem;
-        private ToolStripMenuItem pasteToolStripMenuItem;
-        private ToolStripMenuItem formatToolStripMenuItem1;
-        private ToolStripMenuItem notesListToolStripMenuItem;
+        private ToolStripMenuItem cutBtn;
+        private ToolStripMenuItem copyBtn;
+        private ToolStripMenuItem pasteBtn;
+        private ToolStripMenuItem formatBtn;
+        private ToolStripMenuItem notesListBtn;
         private ToolStripMenuItem helpToolStripMenuItem;
-        private ToolStripMenuItem aboutToolStripMenuItem;
+        private ToolStripMenuItem aboutBtn;
         private Panel panel1;
-        private ToolStripMenuItem cascadeToolStripMenuItem;
-        private ToolStripMenuItem tileToolStripMenuItem;
+        private ToolStripMenuItem cascadeBtn;
+        private ToolStripMenuItem tileBtn;
         private Panel panel2;
         private ToolStrip appBar;
         private ToolStripLabel toolStripLabel2;
