@@ -31,153 +31,185 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NoteEditorForm));
             NoteEditorpn = new Panel();
-            loadBtn = new PictureBox();
-            saveBtn = new PictureBox();
-            categorySelector = new CustomControlls.CategorySelector();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             addBtn = new Button();
+            panel1 = new Panel();
+            categorySelector = new Digital_Notes_Manager.Presentation.CustomControlls.CategorySelector();
             ReminderDatelbl = new Label();
+            saveBtn = new Button();
             reminderDate = new DateTimePicker();
-            contentTxt = new RichTextBox();
+            loadBtn = new Button();
+            Categorylbl = new Label();
             titleTxt = new TextBox();
             Titlelbl = new Label();
-            Categorylbl = new Label();
+            contentTxt = new RichTextBox();
             FontStylegb = new GroupBox();
             btnBold = new CheckBox();
             btnItalic = new CheckBox();
             btnUnderline = new CheckBox();
             openFileDialog1 = new OpenFileDialog();
             NoteEditorpn.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)loadBtn).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)saveBtn).BeginInit();
+            flowLayoutPanel1.SuspendLayout();
+            panel1.SuspendLayout();
             FontStylegb.SuspendLayout();
             SuspendLayout();
             // 
             // NoteEditorpn
             // 
-            NoteEditorpn.BackColor = Color.Lavender;
-            NoteEditorpn.Controls.Add(loadBtn);
-            NoteEditorpn.Controls.Add(saveBtn);
-            NoteEditorpn.Controls.Add(categorySelector);
-            NoteEditorpn.Controls.Add(addBtn);
-            NoteEditorpn.Controls.Add(ReminderDatelbl);
-            NoteEditorpn.Controls.Add(reminderDate);
+            NoteEditorpn.BackColor = Color.White;
+            NoteEditorpn.Controls.Add(flowLayoutPanel1);
+            NoteEditorpn.Controls.Add(panel1);
             NoteEditorpn.Controls.Add(contentTxt);
-            NoteEditorpn.Controls.Add(titleTxt);
-            NoteEditorpn.Controls.Add(Titlelbl);
-            NoteEditorpn.Controls.Add(Categorylbl);
             NoteEditorpn.Controls.Add(FontStylegb);
             NoteEditorpn.Dock = DockStyle.Fill;
             NoteEditorpn.Location = new Point(0, 0);
             NoteEditorpn.Name = "NoteEditorpn";
-            NoteEditorpn.Size = new Size(538, 691);
+            NoteEditorpn.Size = new Size(517, 691);
             NoteEditorpn.TabIndex = 0;
             // 
-            // loadBtn
+            // flowLayoutPanel1
             // 
-            loadBtn.BackColor = Color.Azure;
-            loadBtn.BackgroundImageLayout = ImageLayout.Center;
-            loadBtn.Image = (Image)resources.GetObject("loadBtn.Image");
-            loadBtn.Location = new Point(471, 81);
-            loadBtn.Name = "loadBtn";
-            loadBtn.Size = new Size(33, 30);
-            loadBtn.SizeMode = PictureBoxSizeMode.StretchImage;
-            loadBtn.TabIndex = 10;
-            loadBtn.TabStop = false;
-            loadBtn.Click += loadBtn_Click;
-            // 
-            // saveBtn
-            // 
-            saveBtn.BackColor = Color.Azure;
-            saveBtn.BackgroundImageLayout = ImageLayout.Center;
-            saveBtn.Image = (Image)resources.GetObject("saveBtn.Image");
-            saveBtn.Location = new Point(471, 17);
-            saveBtn.Name = "saveBtn";
-            saveBtn.Size = new Size(33, 30);
-            saveBtn.SizeMode = PictureBoxSizeMode.StretchImage;
-            saveBtn.TabIndex = 9;
-            saveBtn.TabStop = false;
-            saveBtn.Click += saveBtn_Click;
-            // 
-            // categorySelector
-            // 
-            categorySelector.Location = new Point(159, 12);
-            categorySelector.MaximumSize = new Size(153, 28);
-            categorySelector.MinimumSize = new Size(153, 28);
-            categorySelector.Name = "categorySelector";
-            categorySelector.Size = new Size(153, 28);
-            categorySelector.TabIndex = 8;
-            categorySelector.CategoryChanged += Notification;
+            flowLayoutPanel1.BackColor = Color.White;
+            flowLayoutPanel1.Controls.Add(addBtn);
+            flowLayoutPanel1.Location = new Point(12, 618);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(492, 61);
+            flowLayoutPanel1.TabIndex = 14;
             // 
             // addBtn
             // 
             addBtn.BackColor = Color.FromArgb(38, 50, 56);
             addBtn.Cursor = Cursors.Hand;
+            addBtn.FlatStyle = FlatStyle.Flat;
             addBtn.ForeColor = Color.White;
-            addBtn.Location = new Point(12, 622);
+            addBtn.Location = new Point(3, 3);
             addBtn.Name = "addBtn";
-            addBtn.Size = new Size(492, 43);
+            addBtn.Size = new Size(489, 58);
             addBtn.TabIndex = 1;
             addBtn.Text = "Add";
             addBtn.UseVisualStyleBackColor = false;
             addBtn.Click += addBtn_Click;
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.White;
+            panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Controls.Add(categorySelector);
+            panel1.Controls.Add(ReminderDatelbl);
+            panel1.Controls.Add(saveBtn);
+            panel1.Controls.Add(reminderDate);
+            panel1.Controls.Add(loadBtn);
+            panel1.Controls.Add(Categorylbl);
+            panel1.Controls.Add(titleTxt);
+            panel1.Controls.Add(Titlelbl);
+            panel1.Location = new Point(12, 6);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(489, 178);
+            panel1.TabIndex = 13;
+            // 
+            // categorySelector
+            // 
+            categorySelector.Location = new Point(158, 18);
+            categorySelector.MaximumSize = new Size(153, 28);
+            categorySelector.MinimumSize = new Size(153, 28);
+            categorySelector.Name = "categorySelector";
+            categorySelector.Size = new Size(153, 28);
+            categorySelector.TabIndex = 14;
+            // 
             // ReminderDatelbl
             // 
             ReminderDatelbl.AutoSize = true;
-            ReminderDatelbl.BackColor = Color.Lavender;
-            ReminderDatelbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ReminderDatelbl.ForeColor = SystemColors.ActiveCaptionText;
-            ReminderDatelbl.Location = new Point(12, 69);
+            ReminderDatelbl.BackColor = Color.White;
+            ReminderDatelbl.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ReminderDatelbl.ForeColor = Color.Black;
+            ReminderDatelbl.Location = new Point(11, 75);
             ReminderDatelbl.Name = "ReminderDatelbl";
-            ReminderDatelbl.Size = new Size(118, 20);
-            ReminderDatelbl.TabIndex = 7;
+            ReminderDatelbl.Size = new Size(136, 23);
+            ReminderDatelbl.TabIndex = 13;
             ReminderDatelbl.Text = "ReminderDate :";
+            // 
+            // saveBtn
+            // 
+            saveBtn.BackColor = Color.White;
+            saveBtn.BackgroundImageLayout = ImageLayout.Zoom;
+            saveBtn.Cursor = Cursors.Hand;
+            saveBtn.FlatStyle = FlatStyle.Popup;
+            saveBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            saveBtn.ForeColor = Color.FromArgb(38, 50, 56);
+            saveBtn.Image = (Image)resources.GetObject("saveBtn.Image");
+            saveBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            saveBtn.Location = new Point(336, 112);
+            saveBtn.Name = "saveBtn";
+            saveBtn.Size = new Size(135, 43);
+            saveBtn.TabIndex = 12;
+            saveBtn.Text = "Save";
+            saveBtn.UseVisualStyleBackColor = false;
+            saveBtn.Click += saveBtn_Click;
             // 
             // reminderDate
             // 
-            reminderDate.Location = new Point(159, 64);
+            reminderDate.Location = new Point(158, 73);
             reminderDate.Name = "reminderDate";
-            reminderDate.Size = new Size(203, 27);
-            reminderDate.TabIndex = 6;
+            reminderDate.Size = new Size(153, 27);
+            reminderDate.TabIndex = 12;
+            // 
+            // loadBtn
+            // 
+            loadBtn.BackColor = Color.White;
+            loadBtn.BackgroundImageLayout = ImageLayout.Zoom;
+            loadBtn.Cursor = Cursors.Hand;
+            loadBtn.FlatStyle = FlatStyle.Popup;
+            loadBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            loadBtn.ForeColor = Color.FromArgb(38, 50, 56);
+            loadBtn.Image = (Image)resources.GetObject("loadBtn.Image");
+            loadBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            loadBtn.Location = new Point(336, 18);
+            loadBtn.Name = "loadBtn";
+            loadBtn.Size = new Size(135, 43);
+            loadBtn.TabIndex = 11;
+            loadBtn.Text = "Open";
+            loadBtn.UseVisualStyleBackColor = false;
+            loadBtn.Click += loadBtn_Click;
+            // 
+            // Categorylbl
+            // 
+            Categorylbl.AutoSize = true;
+            Categorylbl.BackColor = Color.White;
+            Categorylbl.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Categorylbl.ForeColor = Color.Black;
+            Categorylbl.Location = new Point(11, 21);
+            Categorylbl.Name = "Categorylbl";
+            Categorylbl.Size = new Size(94, 23);
+            Categorylbl.TabIndex = 9;
+            Categorylbl.Text = "Category :";
+            // 
+            // titleTxt
+            // 
+            titleTxt.Location = new Point(158, 127);
+            titleTxt.Multiline = true;
+            titleTxt.Name = "titleTxt";
+            titleTxt.Size = new Size(153, 28);
+            titleTxt.TabIndex = 11;
+            // 
+            // Titlelbl
+            // 
+            Titlelbl.AutoSize = true;
+            Titlelbl.BackColor = Color.White;
+            Titlelbl.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Titlelbl.ForeColor = Color.Black;
+            Titlelbl.Location = new Point(11, 130);
+            Titlelbl.Name = "Titlelbl";
+            Titlelbl.Size = new Size(56, 23);
+            Titlelbl.TabIndex = 10;
+            Titlelbl.Text = "Title :";
             // 
             // contentTxt
             // 
             contentTxt.Location = new Point(12, 324);
             contentTxt.Name = "contentTxt";
-            contentTxt.Size = new Size(492, 281);
+            contentTxt.Size = new Size(489, 281);
             contentTxt.TabIndex = 5;
             contentTxt.Text = "";
-            // 
-            // titleTxt
-            // 
-            titleTxt.Location = new Point(159, 127);
-            titleTxt.Name = "titleTxt";
-            titleTxt.Size = new Size(203, 27);
-            titleTxt.TabIndex = 4;
-            // 
-            // Titlelbl
-            // 
-            Titlelbl.AutoSize = true;
-            Titlelbl.BackColor = Color.Lavender;
-            Titlelbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Titlelbl.ForeColor = SystemColors.ActiveCaptionText;
-            Titlelbl.Location = new Point(12, 130);
-            Titlelbl.Name = "Titlelbl";
-            Titlelbl.Size = new Size(48, 20);
-            Titlelbl.TabIndex = 3;
-            Titlelbl.Text = "Title :";
-            // 
-            // Categorylbl
-            // 
-            Categorylbl.AutoSize = true;
-            Categorylbl.BackColor = Color.Lavender;
-            Categorylbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Categorylbl.ForeColor = SystemColors.ActiveCaptionText;
-            Categorylbl.Location = new Point(12, 17);
-            Categorylbl.Name = "Categorylbl";
-            Categorylbl.Size = new Size(81, 20);
-            Categorylbl.TabIndex = 2;
-            Categorylbl.Text = "Category :";
             // 
             // FontStylegb
             // 
@@ -189,7 +221,7 @@
             FontStylegb.ForeColor = SystemColors.ActiveCaptionText;
             FontStylegb.Location = new Point(12, 190);
             FontStylegb.Name = "FontStylegb";
-            FontStylegb.Size = new Size(492, 117);
+            FontStylegb.Size = new Size(489, 117);
             FontStylegb.TabIndex = 1;
             FontStylegb.TabStop = false;
             FontStylegb.Text = "Font Style";
@@ -235,19 +267,19 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(538, 691);
+            ClientSize = new Size(517, 691);
             Controls.Add(NoteEditorpn);
             Margin = new Padding(4, 5, 4, 5);
             MaximizeBox = false;
-            MaximumSize = new Size(556, 738);
-            MinimumSize = new Size(556, 738);
+            MaximumSize = new Size(535, 738);
+            MinimumSize = new Size(535, 738);
             Name = "NoteEditorForm";
             Text = "Note Editor";
             Load += NoteEditorForm_Load;
             NoteEditorpn.ResumeLayout(false);
-            NoteEditorpn.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)loadBtn).EndInit();
-            ((System.ComponentModel.ISupportInitialize)saveBtn).EndInit();
+            flowLayoutPanel1.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             FontStylegb.ResumeLayout(false);
             FontStylegb.PerformLayout();
             ResumeLayout(false);
@@ -257,19 +289,21 @@
 
         private Panel NoteEditorpn;
         private GroupBox FontStylegb;
-        private Label Titlelbl;
-        private Label Categorylbl;
         private CheckBox btnBold;
         private CheckBox btnItalic;
         private CheckBox btnUnderline;
-        private TextBox titleTxt;
-        private Label ReminderDatelbl;
-        private DateTimePicker reminderDate;
         private RichTextBox contentTxt;
         private Button addBtn;
-        private CustomControlls.CategorySelector categorySelector;
-        private PictureBox loadBtn;
-        private PictureBox saveBtn;
         private OpenFileDialog openFileDialog1;
+        private Button loadBtn;
+        private Button saveBtn;
+        private Panel panel1;
+        private CustomControlls.CategorySelector categorySelector;
+        private Label ReminderDatelbl;
+        private DateTimePicker reminderDate;
+        private TextBox titleTxt;
+        private Label Titlelbl;
+        private Label Categorylbl;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
     }

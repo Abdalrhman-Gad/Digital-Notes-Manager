@@ -46,10 +46,10 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(categoriesComboBox);
-            MaximumSize = new Size(153, 28);
-            MinimumSize = new Size(153, 28);
+            MaximumSize = new Size(203, 27);
+            MinimumSize = new Size(203, 27);
             Name = "CategorySelector";
-            Size = new Size(153, 28);
+            Size = new Size(203, 27);
             Load += CategorySelector_Load;
             ResumeLayout(false);
         }

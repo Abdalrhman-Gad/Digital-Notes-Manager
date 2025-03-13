@@ -52,7 +52,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)LogInpb).BeginInit();
             panel2.SuspendLayout();
-            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -98,21 +97,23 @@
             // Passwordtxt
             // 
             Passwordtxt.BorderStyle = BorderStyle.None;
-            Passwordtxt.Location = new Point(3, 5);
+            Passwordtxt.Location = new Point(482, 329);
             Passwordtxt.MaximumSize = new Size(300, 50);
+            Passwordtxt.Multiline = true;
             Passwordtxt.Name = "Passwordtxt";
             Passwordtxt.PasswordChar = '*';
             Passwordtxt.PlaceholderText = "Enter Your Password";
-            Passwordtxt.Size = new Size(293, 20);
+            Passwordtxt.Size = new Size(293, 30);
             Passwordtxt.TabIndex = 4;
             // 
             // UserNametxt
             // 
             UserNametxt.BorderStyle = BorderStyle.None;
             UserNametxt.Location = new Point(3, 5);
+            UserNametxt.Multiline = true;
             UserNametxt.Name = "UserNametxt";
             UserNametxt.PlaceholderText = "Enter Your User Name";
-            UserNametxt.Size = new Size(293, 20);
+            UserNametxt.Size = new Size(293, 30);
             UserNametxt.TabIndex = 3;
             // 
             // pictureBox2
@@ -187,18 +188,17 @@
             // 
             panel2.BackColor = Color.FromArgb(38, 50, 56);
             panel2.Controls.Add(UserNametxt);
-            panel2.Location = new Point(479, 207);
+            panel2.Location = new Point(479, 191);
             panel2.Name = "panel2";
-            panel2.Size = new Size(299, 30);
+            panel2.Size = new Size(299, 40);
             panel2.TabIndex = 12;
             // 
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(38, 50, 56);
-            panel3.Controls.Add(Passwordtxt);
-            panel3.Location = new Point(479, 328);
+            panel3.Location = new Point(479, 324);
             panel3.Name = "panel3";
-            panel3.Size = new Size(299, 30);
+            panel3.Size = new Size(299, 40);
             panel3.TabIndex = 14;
             // 
             // textBox3
@@ -212,7 +212,7 @@
             // 
             usernameErrorLbl.AutoSize = true;
             usernameErrorLbl.ForeColor = Color.Red;
-            usernameErrorLbl.Location = new Point(479, 240);
+            usernameErrorLbl.Location = new Point(479, 235);
             usernameErrorLbl.Name = "usernameErrorLbl";
             usernameErrorLbl.Size = new Size(193, 20);
             usernameErrorLbl.TabIndex = 15;
@@ -223,7 +223,7 @@
             // 
             passwordErrorLbl.AutoSize = true;
             passwordErrorLbl.ForeColor = Color.Red;
-            passwordErrorLbl.Location = new Point(482, 361);
+            passwordErrorLbl.Location = new Point(479, 368);
             passwordErrorLbl.Name = "passwordErrorLbl";
             passwordErrorLbl.Size = new Size(192, 20);
             passwordErrorLbl.TabIndex = 16;
@@ -236,6 +236,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(784, 489);
+            Controls.Add(Passwordtxt);
             Controls.Add(passwordErrorLbl);
             Controls.Add(usernameErrorLbl);
             Controls.Add(textBox3);
@@ -261,8 +262,6 @@
             ((System.ComponentModel.ISupportInitialize)LogInpb).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }

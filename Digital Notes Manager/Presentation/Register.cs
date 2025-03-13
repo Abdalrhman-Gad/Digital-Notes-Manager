@@ -95,5 +95,7 @@ namespace Digital_Notes_Manager.Presentation
 
             return isUsernameValid && isPasswordValid && isConfirmPasswordValid;
         }
+
+     
     }
 }

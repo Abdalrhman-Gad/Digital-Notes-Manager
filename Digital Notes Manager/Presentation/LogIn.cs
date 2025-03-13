@@ -16,7 +16,7 @@ namespace Digital_Notes_Manager.Presentation
 
         private readonly IServiceProvider _serviceProvider;
 
-        public LogIn(UserService userService,IServiceProvider serviceProvider)
+        public LogIn(UserService userService, IServiceProvider serviceProvider)
         {
             _userService = userService;
             _serviceProvider = serviceProvider;
@@ -89,5 +89,6 @@ namespace Digital_Notes_Manager.Presentation
 
             return isUsernameValid && isPasswordValid;
         }
+
     }
 }
