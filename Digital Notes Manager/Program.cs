@@ -22,13 +22,12 @@ namespace Digital_Notes_Manager
             var loginForm = serviceProvider.GetRequiredService<LogIn>();
             var mainForm = serviceProvider.GetRequiredService<MainForm>();
 
-            var test = serviceProvider.GetRequiredService<NoteEditorForm>();
 
             var userService = serviceProvider.GetRequiredService<UserService>();
 
             Form form = userService.GetLoggedInUser() == null ? loginForm : mainForm;
 
-            System.Windows.Forms.Application.Run(test);
+            System.Windows.Forms.Application.Run(form);
         }
 
         private static ServiceProvider ConfigureServices()
