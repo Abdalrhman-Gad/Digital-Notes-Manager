@@ -23,10 +23,17 @@ namespace Digital_Notes_Manager.Application.Services
 
         private static readonly Expression<Func<Note, NoteDto>> NoteToDto = n => MapHelper.NoteToDto(n);
 
+        public event EventHandler? NoteChanged;
+
         public NoteService(ApplicationDbContext context, UserService userService)
         {
             _context = context;
             _userService = userService;
+        }
+
+        protected virtual void OnNoteChanged()
+        {
+            NoteChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public async Task AddNoteAsync(NoteDto _note)
@@ -36,8 +43,9 @@ namespace Digital_Notes_Manager.Application.Services
 
             await _context.Notes.AddAsync(note);
             await _context.SaveChangesAsync();
-        }
 
+            OnNoteChanged();
+        }
 
         public async Task<bool> DeleteAsync(int noteId)
         {
@@ -46,9 +54,10 @@ namespace Digital_Notes_Manager.Application.Services
 
             _context.Notes.Remove(note);
             await _context.SaveChangesAsync();
+
+            OnNoteChanged();
             return true;
         }
-
 
         public async Task<bool> UpdateAsync(NoteDto _note)
         {
@@ -61,6 +70,8 @@ namespace Digital_Notes_Manager.Application.Services
             note.ReminderDate = _note.ReminderDate;
 
             await _context.SaveChangesAsync();
+
+            OnNoteChanged();
             return true;
         }
 
@@ -109,7 +120,6 @@ namespace Digital_Notes_Manager.Application.Services
                 .Select(NoteToDto)
                 .ToListAsync();
         }
-
 
         public Task<List<NoteDto>> SearchByTitle(string title)
         {

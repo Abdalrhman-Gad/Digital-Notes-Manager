@@ -29,6 +29,8 @@ namespace Digital_Notes_Manager.Presentation
 
             notes = [];
 
+            _noteService.NoteChanged += OnNoteChanged;
+
             InitializeComponent();
         }
 
@@ -47,14 +49,16 @@ namespace Digital_Notes_Manager.Presentation
             ShowTasks(notes);
         }
 
+        private async void OnNoteChanged(object? sender, EventArgs e)
+        {
+            notes = await _noteService.GetAllNotes();
+
+            ShowTasks(notes);
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
         }
 
         private void ShowTasks(List<NoteDto> notes)
@@ -102,8 +106,11 @@ namespace Digital_Notes_Manager.Presentation
         private void logoutBtn_Click(object sender, EventArgs e)
         {
             _userService.UserLogout();
+
             this.Hide();
+
             var login = _serviceProvider.GetRequiredService<LogIn>();
+
             login.Show();
         }
 

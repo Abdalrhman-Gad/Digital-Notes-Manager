@@ -9,6 +9,8 @@ namespace Digital_Notes_Manager.Application.Interfaces
 {
     public interface INoteService : ICrudService<NoteDto>
     {
+        event EventHandler? NoteChanged;
+
         Task AddNoteAsync(NoteDto _note);
 
         Task<List<NoteDto>> GetAllNotes();

@@ -33,7 +33,7 @@
             NoteEditorpn = new Panel();
             loadBtn = new PictureBox();
             saveBtn = new PictureBox();
-            categorySelector = new Digital_Notes_Manager.Presentation.CustomControlls.CategorySelector();
+            categorySelector = new CustomControlls.CategorySelector();
             addBtn = new Button();
             ReminderDatelbl = new Label();
             reminderDate = new DateTimePicker();
