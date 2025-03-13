@@ -33,7 +33,7 @@
             NoteEditorpn = new Panel();
             loadBtn = new PictureBox();
             saveBtn = new PictureBox();
-            categorySelector = new CustomControlls.CategorySelector();
+            categorySelector = new Digital_Notes_Manager.Presentation.CustomControlls.CategorySelector();
             addBtn = new Button();
             ReminderDatelbl = new Label();
             reminderDate = new DateTimePicker();
@@ -54,7 +54,7 @@
             // 
             // NoteEditorpn
             // 
-            NoteEditorpn.BackColor = Color.White;
+            NoteEditorpn.BackColor = Color.Lavender;
             NoteEditorpn.Controls.Add(loadBtn);
             NoteEditorpn.Controls.Add(saveBtn);
             NoteEditorpn.Controls.Add(categorySelector);
@@ -74,6 +74,7 @@
             // 
             // loadBtn
             // 
+            loadBtn.BackColor = Color.Azure;
             loadBtn.BackgroundImageLayout = ImageLayout.Center;
             loadBtn.Image = (Image)resources.GetObject("loadBtn.Image");
             loadBtn.Location = new Point(471, 81);
@@ -86,6 +87,7 @@
             // 
             // saveBtn
             // 
+            saveBtn.BackColor = Color.Azure;
             saveBtn.BackgroundImageLayout = ImageLayout.Center;
             saveBtn.Image = (Image)resources.GetObject("saveBtn.Image");
             saveBtn.Location = new Point(471, 17);
@@ -122,12 +124,14 @@
             // ReminderDatelbl
             // 
             ReminderDatelbl.AutoSize = true;
-            ReminderDatelbl.BackColor = Color.White;
+            ReminderDatelbl.BackColor = Color.Lavender;
+            ReminderDatelbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ReminderDatelbl.ForeColor = SystemColors.ActiveCaptionText;
             ReminderDatelbl.Location = new Point(12, 69);
             ReminderDatelbl.Name = "ReminderDatelbl";
-            ReminderDatelbl.Size = new Size(105, 20);
+            ReminderDatelbl.Size = new Size(118, 20);
             ReminderDatelbl.TabIndex = 7;
-            ReminderDatelbl.Text = "ReminderDate";
+            ReminderDatelbl.Text = "ReminderDate :";
             // 
             // reminderDate
             // 
@@ -154,22 +158,26 @@
             // Titlelbl
             // 
             Titlelbl.AutoSize = true;
-            Titlelbl.BackColor = Color.White;
+            Titlelbl.BackColor = Color.Lavender;
+            Titlelbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Titlelbl.ForeColor = SystemColors.ActiveCaptionText;
             Titlelbl.Location = new Point(12, 130);
             Titlelbl.Name = "Titlelbl";
-            Titlelbl.Size = new Size(38, 20);
+            Titlelbl.Size = new Size(48, 20);
             Titlelbl.TabIndex = 3;
-            Titlelbl.Text = "Title";
+            Titlelbl.Text = "Title :";
             // 
             // Categorylbl
             // 
             Categorylbl.AutoSize = true;
-            Categorylbl.BackColor = Color.White;
+            Categorylbl.BackColor = Color.Lavender;
+            Categorylbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Categorylbl.ForeColor = SystemColors.ActiveCaptionText;
             Categorylbl.Location = new Point(12, 17);
             Categorylbl.Name = "Categorylbl";
-            Categorylbl.Size = new Size(69, 20);
+            Categorylbl.Size = new Size(81, 20);
             Categorylbl.TabIndex = 2;
-            Categorylbl.Text = "Category";
+            Categorylbl.Text = "Category :";
             // 
             // FontStylegb
             // 
@@ -177,6 +185,8 @@
             FontStylegb.Controls.Add(btnBold);
             FontStylegb.Controls.Add(btnItalic);
             FontStylegb.Controls.Add(btnUnderline);
+            FontStylegb.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            FontStylegb.ForeColor = SystemColors.ActiveCaptionText;
             FontStylegb.Location = new Point(12, 190);
             FontStylegb.Name = "FontStylegb";
             FontStylegb.Size = new Size(492, 117);
@@ -187,9 +197,10 @@
             // btnBold
             // 
             btnBold.AutoSize = true;
+            btnBold.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBold.Location = new Point(78, 47);
             btnBold.Name = "btnBold";
-            btnBold.Size = new Size(62, 24);
+            btnBold.Size = new Size(63, 24);
             btnBold.TabIndex = 2;
             btnBold.Text = "Bold";
             btnBold.UseVisualStyleBackColor = true;
@@ -197,6 +208,7 @@
             // btnItalic
             // 
             btnItalic.AutoSize = true;
+            btnItalic.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
             btnItalic.Location = new Point(201, 47);
             btnItalic.Name = "btnItalic";
             btnItalic.Size = new Size(63, 24);
@@ -207,6 +219,7 @@
             // btnUnderline
             // 
             btnUnderline.AutoSize = true;
+            btnUnderline.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
             btnUnderline.Location = new Point(337, 47);
             btnUnderline.Name = "btnUnderline";
             btnUnderline.Size = new Size(95, 24);
