@@ -34,15 +34,14 @@
             pictureBox1 = new PictureBox();
             reminderDateLbl = new Label();
             creationDateLbl = new Label();
-            updateBtn = new PictureBox();
-            deleteBtn = new PictureBox();
+            updateBtn = new Button();
+            deleteBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)updateBtn).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)deleteBtn).BeginInit();
             SuspendLayout();
             // 
             // contentTxt
             // 
+            contentTxt.BackColor = Color.White;
             contentTxt.Location = new Point(12, 46);
             contentTxt.Name = "contentTxt";
             contentTxt.ReadOnly = true;
@@ -92,33 +91,44 @@
             // 
             // updateBtn
             // 
-            updateBtn.BackgroundImageLayout = ImageLayout.Center;
+            updateBtn.BackColor = Color.White;
+            updateBtn.BackgroundImageLayout = ImageLayout.Zoom;
+            updateBtn.Cursor = Cursors.Hand;
+            updateBtn.FlatStyle = FlatStyle.Flat;
+            updateBtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            updateBtn.ForeColor = Color.FromArgb(38, 50, 56);
             updateBtn.Image = (Image)resources.GetObject("updateBtn.Image");
-            updateBtn.Location = new Point(435, 92);
+            updateBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            updateBtn.Location = new Point(12, 338);
             updateBtn.Name = "updateBtn";
-            updateBtn.Size = new Size(33, 30);
-            updateBtn.SizeMode = PictureBoxSizeMode.StretchImage;
-            updateBtn.TabIndex = 6;
-            updateBtn.TabStop = false;
+            updateBtn.Size = new Size(161, 44);
+            updateBtn.TabIndex = 12;
+            updateBtn.Text = "Update";
+            updateBtn.UseVisualStyleBackColor = false;
             updateBtn.Click += updateBtn_Click;
             // 
             // deleteBtn
             // 
-            deleteBtn.BackgroundImageLayout = ImageLayout.Center;
+            deleteBtn.BackColor = Color.FromArgb(38, 50, 56);
+            deleteBtn.Cursor = Cursors.Hand;
+            deleteBtn.FlatStyle = FlatStyle.Flat;
+            deleteBtn.ForeColor = Color.White;
             deleteBtn.Image = (Image)resources.GetObject("deleteBtn.Image");
-            deleteBtn.Location = new Point(435, 46);
+            deleteBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            deleteBtn.Location = new Point(268, 338);
             deleteBtn.Name = "deleteBtn";
-            deleteBtn.Size = new Size(33, 30);
-            deleteBtn.SizeMode = PictureBoxSizeMode.StretchImage;
-            deleteBtn.TabIndex = 7;
-            deleteBtn.TabStop = false;
+            deleteBtn.Size = new Size(161, 44);
+            deleteBtn.TabIndex = 14;
+            deleteBtn.Text = "Delete";
+            deleteBtn.UseVisualStyleBackColor = false;
             deleteBtn.Click += deleteBtn_Click;
             // 
             // NoteDetailsForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(481, 342);
+            BackColor = Color.White;
+            ClientSize = new Size(445, 401);
             Controls.Add(deleteBtn);
             Controls.Add(updateBtn);
             Controls.Add(creationDateLbl);
@@ -126,12 +136,12 @@
             Controls.Add(reminderDateLbl);
             Controls.Add(categoryLbl);
             Controls.Add(contentTxt);
+            MaximumSize = new Size(463, 448);
+            MinimumSize = new Size(463, 448);
             Name = "NoteDetailsForm";
             Text = "Title";
             Load += NoteDetailsForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)updateBtn).EndInit();
-            ((System.ComponentModel.ISupportInitialize)deleteBtn).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -143,7 +153,7 @@
         private PictureBox pictureBox1;
         private Label reminderDateLbl;
         private Label creationDateLbl;
-        private PictureBox updateBtn;
-        private PictureBox deleteBtn;
+        private Button updateBtn;
+        private Button deleteBtn;
     }
 }

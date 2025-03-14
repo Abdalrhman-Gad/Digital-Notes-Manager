@@ -68,10 +68,11 @@
             Passwordtxt.BorderStyle = BorderStyle.None;
             Passwordtxt.Location = new Point(3, 5);
             Passwordtxt.MaximumSize = new Size(300, 50);
+            Passwordtxt.Multiline = true;
             Passwordtxt.Name = "Passwordtxt";
             Passwordtxt.PasswordChar = '*';
             Passwordtxt.PlaceholderText = "Enter Your Password";
-            Passwordtxt.Size = new Size(293, 20);
+            Passwordtxt.Size = new Size(293, 30);
             Passwordtxt.TabIndex = 4;
             // 
             // panel1
@@ -108,7 +109,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(527, 192);
+            label1.Location = new Point(527, 186);
             label1.Name = "label1";
             label1.Size = new Size(85, 23);
             label1.TabIndex = 16;
@@ -118,14 +119,15 @@
             // 
             UserNametxt.BorderStyle = BorderStyle.None;
             UserNametxt.Location = new Point(3, 5);
+            UserNametxt.Multiline = true;
             UserNametxt.Name = "UserNametxt";
             UserNametxt.PlaceholderText = "Enter Your User Name";
-            UserNametxt.Size = new Size(293, 20);
+            UserNametxt.Size = new Size(293, 30);
             UserNametxt.TabIndex = 3;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(583, 162);
+            textBox3.Location = new Point(583, 156);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(0, 27);
             textBox3.TabIndex = 18;
@@ -134,18 +136,18 @@
             // 
             panel3.BackColor = Color.FromArgb(38, 50, 56);
             panel3.Controls.Add(Passwordtxt);
-            panel3.Location = new Point(490, 234);
+            panel3.Location = new Point(490, 225);
             panel3.Name = "panel3";
-            panel3.Size = new Size(299, 30);
+            panel3.Size = new Size(299, 40);
             panel3.TabIndex = 26;
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(38, 50, 56);
             panel2.Controls.Add(UserNametxt);
-            panel2.Location = new Point(490, 124);
+            panel2.Location = new Point(490, 115);
             panel2.Name = "panel2";
-            panel2.Size = new Size(299, 30);
+            panel2.Size = new Size(299, 40);
             panel2.TabIndex = 25;
             // 
             // Registerpb
@@ -177,7 +179,7 @@
             SignUpbtn.FlatStyle = FlatStyle.Flat;
             SignUpbtn.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             SignUpbtn.ForeColor = Color.White;
-            SignUpbtn.Location = new Point(493, 395);
+            SignUpbtn.Location = new Point(493, 405);
             SignUpbtn.Name = "SignUpbtn";
             SignUpbtn.Size = new Size(298, 39);
             SignUpbtn.TabIndex = 21;
@@ -188,7 +190,7 @@
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(491, 190);
+            pictureBox3.Location = new Point(491, 184);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(30, 30);
             pictureBox3.TabIndex = 20;
@@ -224,9 +226,9 @@
             // 
             panel4.BackColor = Color.FromArgb(38, 50, 56);
             panel4.Controls.Add(ConfirmPasswordtxt);
-            panel4.Location = new Point(492, 337);
+            panel4.Location = new Point(490, 334);
             panel4.Name = "panel4";
-            panel4.Size = new Size(299, 30);
+            panel4.Size = new Size(299, 40);
             panel4.TabIndex = 30;
             // 
             // ConfirmPasswordtxt
@@ -234,16 +236,17 @@
             ConfirmPasswordtxt.BorderStyle = BorderStyle.None;
             ConfirmPasswordtxt.Location = new Point(3, 5);
             ConfirmPasswordtxt.MaximumSize = new Size(300, 50);
+            ConfirmPasswordtxt.Multiline = true;
             ConfirmPasswordtxt.Name = "ConfirmPasswordtxt";
             ConfirmPasswordtxt.PasswordChar = '*';
             ConfirmPasswordtxt.PlaceholderText = "Confirm Password";
-            ConfirmPasswordtxt.Size = new Size(293, 20);
+            ConfirmPasswordtxt.Size = new Size(293, 30);
             ConfirmPasswordtxt.TabIndex = 4;
             // 
             // pictureBox5
             // 
             pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(491, 293);
+            pictureBox5.Location = new Point(491, 290);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(30, 30);
             pictureBox5.TabIndex = 29;
@@ -256,7 +259,7 @@
             LogInlkl.DisabledLinkColor = Color.Black;
             LogInlkl.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LogInlkl.LinkColor = Color.Black;
-            LogInlkl.Location = new Point(547, 452);
+            LogInlkl.Location = new Point(547, 456);
             LogInlkl.Name = "LogInlkl";
             LogInlkl.Size = new Size(194, 20);
             LogInlkl.TabIndex = 32;
@@ -290,7 +293,7 @@
             // 
             confirmPassErrorLbl.AutoSize = true;
             confirmPassErrorLbl.ForeColor = Color.Red;
-            confirmPassErrorLbl.Location = new Point(495, 370);
+            confirmPassErrorLbl.Location = new Point(493, 375);
             confirmPassErrorLbl.Name = "confirmPassErrorLbl";
             confirmPassErrorLbl.Size = new Size(155, 20);
             confirmPassErrorLbl.TabIndex = 35;

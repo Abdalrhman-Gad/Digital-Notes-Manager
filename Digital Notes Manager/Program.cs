@@ -23,6 +23,7 @@ namespace Digital_Notes_Manager
             var loginForm = serviceProvider.GetRequiredService<LogIn>();
             var mainForm = serviceProvider.GetRequiredService<MainForm>();
 
+
             var userService = serviceProvider.GetRequiredService<UserService>();
 
             Form form = userService.GetLoggedInUser() == null ? loginForm : mainForm;
