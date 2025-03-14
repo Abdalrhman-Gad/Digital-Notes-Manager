@@ -1,8 +1,13 @@
 ﻿using Digital_Notes_Manager.Application.DTOs;
+using Digital_Notes_Manager.Application.Events;
 using Digital_Notes_Manager.Application.Services;
 using Digital_Notes_Manager.Domain.Enums;
 using Digital_Notes_Manager.Presentation.CustomControlls;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Toolkit.Uwp.Notifications;
+using Windows.Data.Xml.Dom;
+using Windows.UI.Notifications;
+
 namespace Digital_Notes_Manager.Presentation
 {
     public partial class MainForm : Form
@@ -15,12 +20,16 @@ namespace Digital_Notes_Manager.Presentation
 
         private SearchBy searchBy = SearchBy.Title;
 
-        private CategorySelector categorySelector;
+        private readonly CategorySelector categorySelector;
+
+        private ToolStripControlHost comboBoxHost;
 
         private List<NoteDto> notes;
 
         public MainForm(NoteService noteService, UserService userService, IServiceProvider serviceProvider)
         {
+            this.IsMdiContainer = true;
+
             _userService = userService;
             _serviceProvider = serviceProvider;
             _noteService = noteService;
@@ -30,6 +39,7 @@ namespace Digital_Notes_Manager.Presentation
             notes = [];
 
             _noteService.NoteChanged += OnNoteChanged;
+            _noteService.ReminderTrigged += ShowReminderNotification;
 
             InitializeComponent();
         }
@@ -38,7 +48,7 @@ namespace Digital_Notes_Manager.Presentation
         {
             usernameLbl.Text = _userService.GetLoggedInUser()!.Username;
 
-            ToolStripControlHost comboBoxHost = new ToolStripControlHost(categorySelector);
+            comboBoxHost = new ToolStripControlHost(categorySelector);
 
             appBar.Items.Insert(4, comboBoxHost);
 
@@ -46,14 +56,26 @@ namespace Digital_Notes_Manager.Presentation
 
             notes = await _noteService.GetAllNotes();
 
-            ShowTasks(notes);
+            ShowNotes(notes);
+        }
+
+        private void ShowReminderNotification(object? sender, ReminderEventArgs e)
+        {
+            ShowToastNotification("Reminder for not", e.Title);
         }
 
         private async void OnNoteChanged(object? sender, EventArgs e)
         {
-            notes = await _noteService.GetAllNotes();
+            try
+            {
+                notes = await _noteService.GetAllNotes();
 
-            ShowTasks(notes);
+                ShowNotes(notes);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading notes: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -61,7 +83,7 @@ namespace Digital_Notes_Manager.Presentation
             this.Close();
         }
 
-        private void ShowTasks(List<NoteDto> notes)
+        private void ShowNotes(List<NoteDto> notes)
         {
             notesDataGridView.DataSource = notes;
 
@@ -97,7 +119,7 @@ namespace Digital_Notes_Manager.Presentation
             }
 
             if (filteredNotes.Any())
-                ShowTasks(filteredNotes);
+                ShowNotes(filteredNotes);
             else
                 MessageBox.Show("No matching tasks found.", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -105,13 +127,16 @@ namespace Digital_Notes_Manager.Presentation
 
         private void logoutBtn_Click(object sender, EventArgs e)
         {
-            _userService.UserLogout();
+            var confirm = MessageBox.Show("Are you sure you want to log out?", "Confirm Logout",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            this.Hide();
-
-            var login = _serviceProvider.GetRequiredService<LogIn>();
-
-            login.Show();
+            if (confirm == DialogResult.Yes)
+            {
+                _userService.UserLogout();
+                this.Hide();
+                var login = _serviceProvider.GetRequiredService<LogIn>();
+                login.Show();
+            }
         }
 
         private void tileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -121,10 +146,31 @@ namespace Digital_Notes_Manager.Presentation
 
         private void newBtn_Click(object sender, EventArgs e)
         {
-            NoteEditorForm noteEditorForm =
-                _serviceProvider.GetRequiredService<NoteEditorForm>();
+            try
+            {
+                notesDataGridView.Visible = false;
 
-            noteEditorForm.Show();
+                foreach (Form child in this.MdiChildren)
+                {
+                    if (child is NoteEditorForm)
+                    {
+                        child.Activate();
+                        return;
+                    }
+                }
+
+                NoteEditorForm noteEditorForm = _serviceProvider.GetRequiredService<NoteEditorForm>();
+                noteEditorForm.MdiParent = this;
+                noteEditorForm.WindowState = FormWindowState.Normal;
+                noteEditorForm.Show();
+
+                this.LayoutMdi(MdiLayout.TileHorizontal);
+                noteEditorForm.BringToFront();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error opening child form: {ex.Message}");
+            }
         }
 
         private void cascadeBtn_Click(object sender, EventArgs e)
@@ -144,7 +190,7 @@ namespace Digital_Notes_Manager.Presentation
                 System.Reflection.BindingFlags.NonPublic |
                 System.Reflection.BindingFlags.Instance |
                 System.Reflection.BindingFlags.SetProperty,
-                null, notesDataGridView, [true]);
+                null, notesDataGridView, new object[] { true });
 
             // Header styling
             notesDataGridView.EnableHeadersVisualStyles = false;
@@ -173,20 +219,102 @@ namespace Digital_Notes_Manager.Presentation
             // Auto size columns
             notesDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             notesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            // Set row height
+            notesDataGridView.RowTemplate.Height = 60;
+
+            foreach (DataGridViewRow row in notesDataGridView.Rows)
+            {
+                row.Height = 60; // Or any specific condition
+            }
         }
 
         private void notesDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
+                notesDataGridView.Visible = false;
+
                 var selectedNote = (NoteDto)notesDataGridView.Rows[e.RowIndex].DataBoundItem;
 
                 var noteDetailsForm = _serviceProvider.GetRequiredService<NoteDetailsForm>();
 
                 noteDetailsForm.Note = selectedNote;
 
-                noteDetailsForm.ShowDialog();
+                noteDetailsForm.MdiParent = this;
+
+                noteDetailsForm.Show();
+
+                noteDetailsForm.BringToFront();
             }
+        }
+
+        private void titleBtn_Click(object sender, EventArgs e)
+        {
+            searchBy = SearchBy.Title;
+
+            searchTxt.Visible = true;
+            comboBoxHost.Visible = false;
+        }
+
+        private void contentBtn_Click(object sender, EventArgs e)
+        {
+            searchBy = SearchBy.Content;
+
+            searchTxt.Visible = true;
+            comboBoxHost.Visible = false;
+        }
+
+        private void categoryBtn_Click(object sender, EventArgs e)
+        {
+            searchBy = SearchBy.Category;
+
+            searchTxt.Visible = false;
+            comboBoxHost.Visible = true;
+        }
+
+        private void descinding_Click(object sender, EventArgs e)
+        {
+            var sortedNotes = notes.OrderBy(n => n.CreationDate).ToList();
+
+            ShowNotes(sortedNotes);
+
+            assending.Visible = true;
+            descinding.Visible = false;
+        }
+
+        private void assending_Click(object sender, EventArgs e)
+        {
+            var sortedNotes = notes.OrderByDescending(n => n.CreationDate).ToList();
+
+            ShowNotes(sortedNotes);
+
+            assending.Visible = false;
+            descinding.Visible = true;
+        }
+
+        private void ShowToastNotification(string title, string message)
+        {
+            // Create toast content
+            var content = new ToastContentBuilder()
+                .AddText(title)
+                .AddText(message)
+                .GetToastContent();
+
+            // Convert to XML format
+            XmlDocument xmlDoc = new();
+            xmlDoc.LoadXml(content.GetContent());
+
+            // Create the toast notification
+            ToastNotification toast = new(xmlDoc);
+
+            // Show the toast notification using ToastNotificationManager
+            ToastNotificationManager.CreateToastNotifier("DigitalNotesManager").Show(toast);
+        }
+
+        private void notesListBtn_Click(object sender, EventArgs e)
+        {
+            notesDataGridView.Visible = true;
         }
     }
 }

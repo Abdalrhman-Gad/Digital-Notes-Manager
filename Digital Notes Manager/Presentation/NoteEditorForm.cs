@@ -16,6 +16,8 @@ namespace Digital_Notes_Manager.Presentation
 
         public NoteEditorForm(NoteService noteService)
         {
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+
             _noteService = noteService;
 
             InitializeComponent();

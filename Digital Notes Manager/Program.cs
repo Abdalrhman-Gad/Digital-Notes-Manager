@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 
 namespace Digital_Notes_Manager
@@ -57,12 +58,13 @@ namespace Digital_Notes_Manager
             services.AddSingleton<UserService>();
             services.AddSingleton<NoteService>();
 
+            services.AddSingleton<IHostedService, ReminderBackgroundService>();
+
             services.AddTransient<LogIn>();
             services.AddTransient<Register>();
             services.AddTransient<MainForm>();
             services.AddTransient<NoteDetailsForm>();
             services.AddTransient<NoteEditorForm>();
-
 
             return services.BuildServiceProvider();
         }

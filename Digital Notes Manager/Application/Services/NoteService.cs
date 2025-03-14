@@ -1,17 +1,12 @@
 ﻿using Digital_Notes_Manager.Application.DTOs;
+using Digital_Notes_Manager.Application.Events;
 using Digital_Notes_Manager.Application.Helpers;
 using Digital_Notes_Manager.Application.Interfaces;
 using Digital_Notes_Manager.Domain.Exceptions;
 using Digital_Notes_Manager.Domain.Models;
 using Digital_Notes_Manager.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Digital_Notes_Manager.Application.Services
 {
@@ -25,15 +20,22 @@ namespace Digital_Notes_Manager.Application.Services
 
         public event EventHandler? NoteChanged;
 
+        public event EventHandler<ReminderEventArgs>? ReminderTrigged;
+
         public NoteService(ApplicationDbContext context, UserService userService)
         {
             _context = context;
             _userService = userService;
         }
 
-        protected virtual void OnNoteChanged()
+        public void OnNoteChanged()
         {
             NoteChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void OnReminderTrigged(ReminderEventArgs eventArgs)
+        {
+            ReminderTrigged?.Invoke(this, eventArgs);
         }
 
         public async Task AddNoteAsync(NoteDto _note)
@@ -124,6 +126,11 @@ namespace Digital_Notes_Manager.Application.Services
         public Task<List<NoteDto>> SearchByTitle(string title)
         {
             return GetNotesAsync(n => n.Title.Contains(title));
+        }
+
+        public async Task<List<NoteDto>> GetNotesWithReminders()
+        {
+            return await GetNotesAsync(n => n.ReminderDate != null && n.ReminderDate <= DateTime.Now);
         }
     }
 }

@@ -1,9 +1,5 @@
 ﻿using Digital_Notes_Manager.Application.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Digital_Notes_Manager.Application.Events;
 
 namespace Digital_Notes_Manager.Application.Interfaces
 {
@@ -11,11 +7,19 @@ namespace Digital_Notes_Manager.Application.Interfaces
     {
         event EventHandler? NoteChanged;
 
+        event EventHandler<ReminderEventArgs>? ReminderTrigged;
+
+        void OnNoteChanged();
+
+        void OnReminderTrigged(ReminderEventArgs eventArgs);
+
         Task AddNoteAsync(NoteDto _note);
 
         Task<List<NoteDto>> GetAllNotes();
 
         Task<NoteDto> GetNoteByIdAsync(int noteId);
+
+        Task<List<NoteDto>> GetNotesWithReminders();
 
         Task SaveNoteContentAsync(string filePath, string content);
 

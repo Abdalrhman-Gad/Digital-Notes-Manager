@@ -74,7 +74,7 @@
             // 
             reminderDateLbl.AutoSize = true;
             reminderDateLbl.ForeColor = Color.DimGray;
-            reminderDateLbl.Location = new Point(328, 9);
+            reminderDateLbl.Location = new Point(316, 9);
             reminderDateLbl.Name = "reminderDateLbl";
             reminderDateLbl.Size = new Size(101, 20);
             reminderDateLbl.TabIndex = 3;

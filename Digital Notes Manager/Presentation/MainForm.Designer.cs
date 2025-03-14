@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            menuStrip1 = new MenuStrip();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            notesDataGridView = new DataGridView();
             fileToolStripMenuItem = new ToolStripMenuItem();
             newBtn = new ToolStripMenuItem();
             openBtn = new ToolStripMenuItem();
@@ -46,9 +48,7 @@
             tileBtn = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
             aboutBtn = new ToolStripMenuItem();
-            panel1 = new Panel();
-            panel2 = new Panel();
-            notesDataGridView = new DataGridView();
+            menuStrip1 = new MenuStrip();
             appBar = new ToolStrip();
             toolStripLabel2 = new ToolStripLabel();
             toolStripSeparator2 = new ToolStripSeparator();
@@ -63,22 +63,39 @@
             assending = new ToolStripButton();
             logoutBtn = new ToolStripButton();
             usernameLbl = new ToolStripLabel();
-            menuStrip1.SuspendLayout();
-            panel2.SuspendLayout();
+            panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)notesDataGridView).BeginInit();
+            menuStrip1.SuspendLayout();
             appBar.SuspendLayout();
             SuspendLayout();
             // 
-            // menuStrip1
+            // panel1
             // 
-            menuStrip1.BackColor = Color.White;
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, formatToolStripMenuItem, helpToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(984, 31);
-            menuStrip1.TabIndex = 2;
-            menuStrip1.Text = "menuStrip1";
+            panel1.BackColor = Color.FromArgb(38, 50, 56);
+            panel1.Controls.Add(panel2);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 31);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1389, 36);
+            panel1.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1389, 314);
+            panel2.TabIndex = 4;
+            // 
+            // notesDataGridView
+            // 
+            notesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            notesDataGridView.Location = new Point(0, 107);
+            notesDataGridView.Name = "notesDataGridView";
+            notesDataGridView.ReadOnly = true;
+            notesDataGridView.RowHeadersWidth = 51;
+            notesDataGridView.Size = new Size(1386, 596);
+            notesDataGridView.TabIndex = 3;
+            notesDataGridView.CellDoubleClick += notesDataGridView_CellDoubleClick;
             // 
             // fileToolStripMenuItem
             // 
@@ -159,6 +176,7 @@
             notesListBtn.Name = "notesListBtn";
             notesListBtn.Size = new Size(178, 28);
             notesListBtn.Text = "Notes List";
+            notesListBtn.Click += notesListBtn_Click;
             // 
             // cascadeBtn
             // 
@@ -188,44 +206,27 @@
             aboutBtn.Size = new Size(147, 28);
             aboutBtn.Text = "About";
             // 
-            // panel1
+            // menuStrip1
             // 
-            panel1.BackColor = Color.FromArgb(38, 50, 56);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 31);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(984, 36);
-            panel1.TabIndex = 1;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(notesDataGridView);
-            panel2.Controls.Add(appBar);
-            panel2.Location = new Point(0, 51);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(984, 475);
-            panel2.TabIndex = 4;
-            // 
-            // notesDataGridView
-            // 
-            notesDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            notesDataGridView.Location = new Point(3, 40);
-            notesDataGridView.Name = "notesDataGridView";
-            notesDataGridView.ReadOnly = true;
-            notesDataGridView.RowHeadersWidth = 51;
-            notesDataGridView.Size = new Size(978, 432);
-            notesDataGridView.TabIndex = 3;
-            notesDataGridView.CellDoubleClick += notesDataGridView_CellDoubleClick;
+            menuStrip1.BackColor = Color.White;
+            menuStrip1.ImageScalingSize = new Size(20, 20);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, editToolStripMenuItem, formatToolStripMenuItem, helpToolStripMenuItem });
+            menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1389, 31);
+            menuStrip1.TabIndex = 2;
+            menuStrip1.Text = "menuStrip1";
             // 
             // appBar
             // 
             appBar.ImageScalingSize = new Size(20, 20);
             appBar.Items.AddRange(new ToolStripItem[] { toolStripLabel2, toolStripSeparator2, toolStripLabel3, searchTxt, searchBtn, filterSearch, descinding, assending, logoutBtn, usernameLbl });
-            appBar.Location = new Point(0, 0);
+            appBar.Location = new Point(0, 67);
             appBar.Name = "appBar";
             appBar.Padding = new Padding(5);
-            appBar.Size = new Size(984, 37);
-            appBar.TabIndex = 2;
+            appBar.Size = new Size(1389, 37);
+            appBar.TabIndex = 4;
             appBar.Text = "toolStrip1";
             // 
             // toolStripLabel2
@@ -258,7 +259,6 @@
             searchBtn.Name = "searchBtn";
             searchBtn.Size = new Size(29, 24);
             searchBtn.Text = "Search";
-            searchBtn.Click += searchBtn_Click;
             // 
             // filterSearch
             // 
@@ -316,7 +316,6 @@
             logoutBtn.Name = "logoutBtn";
             logoutBtn.Size = new Size(29, 24);
             logoutBtn.Text = "Logout";
-            logoutBtn.Click += logoutBtn_Click;
             // 
             // usernameLbl
             // 
@@ -330,8 +329,9 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(984, 524);
-            Controls.Add(panel2);
+            ClientSize = new Size(1389, 702);
+            Controls.Add(notesDataGridView);
+            Controls.Add(appBar);
             Controls.Add(panel1);
             Controls.Add(menuStrip1);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -343,11 +343,10 @@
             Text = "MainForm";
             TransparencyKey = Color.White;
             Load += MainForm_Load;
+            panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)notesDataGridView).EndInit();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)notesDataGridView).EndInit();
             appBar.ResumeLayout(false);
             appBar.PerformLayout();
             ResumeLayout(false);
@@ -355,25 +354,26 @@
         }
 
         #endregion
-        private MenuStrip menuStrip1;
+        private Panel panel1;
+        private Panel panel2;
+        private DataGridView notesDataGridView;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem newBtn;
         private ToolStripMenuItem openBtn;
         private ToolStripMenuItem saveBtn;
         private ToolStripMenuItem exitBtn;
         private ToolStripMenuItem editToolStripMenuItem;
-        private ToolStripMenuItem formatToolStripMenuItem;
         private ToolStripMenuItem cutBtn;
         private ToolStripMenuItem copyBtn;
         private ToolStripMenuItem pasteBtn;
         private ToolStripMenuItem formatBtn;
+        private ToolStripMenuItem formatToolStripMenuItem;
         private ToolStripMenuItem notesListBtn;
-        private ToolStripMenuItem helpToolStripMenuItem;
-        private ToolStripMenuItem aboutBtn;
-        private Panel panel1;
         private ToolStripMenuItem cascadeBtn;
         private ToolStripMenuItem tileBtn;
-        private Panel panel2;
+        private ToolStripMenuItem helpToolStripMenuItem;
+        private ToolStripMenuItem aboutBtn;
+        private MenuStrip menuStrip1;
         private ToolStrip appBar;
         private ToolStripLabel toolStripLabel2;
         private ToolStripSeparator toolStripSeparator2;
@@ -381,13 +381,12 @@
         private ToolStripTextBox searchTxt;
         private ToolStripButton searchBtn;
         private ToolStripSplitButton filterSearch;
-        private ToolStripMenuItem contentBtn;
         private ToolStripMenuItem titleBtn;
+        private ToolStripMenuItem contentBtn;
+        private ToolStripMenuItem categoryBtn;
         private ToolStripButton descinding;
         private ToolStripButton assending;
         private ToolStripButton logoutBtn;
         private ToolStripLabel usernameLbl;
-        private ToolStripMenuItem categoryBtn;
-        private DataGridView notesDataGridView;
     }
 }
