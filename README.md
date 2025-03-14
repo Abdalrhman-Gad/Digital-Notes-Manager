@@ -8,6 +8,7 @@
 ### 📌 Key Features  
 ✔ **Multi-Document Interface (MDI)** – Work with multiple notes simultaneously.  
 ✔ **Authentication & Authorization** – Secured with **ASP.NET Core Identity**.  
+✔ **Onion Architecture** – A layered approach ensuring separation of concerns and maintainability.  
 ✔ **SOLID Design Principles** – Ensuring clean, maintainable, and scalable code.  
 ✔ **Background Service for Reminders** – Uses `BackgroundService` to trigger note reminders.  
 ✔ **Custom Controls & Events** – Includes a **Category Selector** with a custom event.  
@@ -19,15 +20,23 @@
 
 ---
 
-## 🔑 Authentication & Security  
+## 🏗️ System Architecture  
 
-- Implemented **user authentication** using **ASP.NET Core Identity**, ensuring secure access to notes.  
-- Users must **log in** to create, edit, or delete notes.  
-- Role-based access control (RBAC) is enforced to protect sensitive operations.  
+### 🔥 Onion Architecture  
+This project follows the **Onion Architecture** pattern, ensuring a well-structured, maintainable, and scalable codebase.  
 
----
-
-## 🚀 System Architecture  
+#### 🏛️ **Layers of the Architecture:**  
+1. **Domain Layer**:  
+   - Core business logic and domain models.  
+   - Implements interfaces without dependencies on external frameworks.  
+2. **Application Layer**:  
+   - Contains use cases, DTOs, and business rules.  
+   - Communicates with the **Domain** and **Infrastructure** layers.  
+3. **Infrastructure Layer**:  
+   - Handles **database interactions, authentication, and file storage**.  
+   - Implements repositories using **Entity Framework Core**.  
+4. **Presentation Layer** (Windows Forms UI):  
+   - Implements the **user interface** and interacts with the **Application Layer** via **dependency injection**.  
 
 ### 🏗️ Design Principles  
 This project strictly follows **SOLID principles** to enhance **maintainability, scalability, and testability**.  
@@ -42,6 +51,14 @@ This project strictly follows **SOLID principles** to enhance **maintainability,
 - A **`BackgroundService`** runs asynchronously to monitor note reminders.  
 - Notifications are sent when a reminder is due.  
 - Ensures reminders are handled **even when the UI is inactive**.  
+
+---
+
+## 🔑 Authentication & Security  
+
+- Implemented **user authentication** using **ASP.NET Core Identity**, ensuring secure access to notes.  
+- Users must **log in** to create, edit, or delete notes.  
+- Role-based access control (RBAC) is enforced to protect sensitive operations.  
 
 ---
 
@@ -69,6 +86,10 @@ This project strictly follows **SOLID principles** to enhance **maintainability,
 - Supports **sorting & filtering**.  
 - **Double-click** opens the note in an MDI Child form.  
 
+### **🗒️ Note Details Form**  
+- Displays **full note details** in a read-only mode.  
+- Allows **deleting or editing** the note.  
+
 ---
 
 ## 💾 File Operations  
@@ -93,9 +114,8 @@ This project strictly follows **SOLID principles** to enhance **maintainability,
 
 ---
 
-## 🏗️ System Design  
+## 🏗️ Database Schema (SQL Server)  
 
-### **🗄️ Database Schema (SQL Server)**  
 - **Users Table**  
   - `UserID`, `Username`, `PasswordHash`  
 - **Notes Table**  
@@ -105,5 +125,6 @@ This project strictly follows **SOLID principles** to enhance **maintainability,
 
 ## 🎯 Conclusion  
 
-**Digital Notes Manager** is a powerful and user-friendly note management system built with **ASP.NET Core Identity, Windows Forms, and SOLID principles**. It ensures **security, scalability, and maintainability**, making it a **robust solution** for note organization.  
+**Digital Notes Manager** is a powerful and user-friendly note management system built with **ASP.NET Core Identity, Windows Forms, Onion Architecture, and SOLID principles**. It ensures **security, scalability, and maintainability**, making it a **robust solution** for note organization.  
 
+🚀 **Happy Coding!**  
