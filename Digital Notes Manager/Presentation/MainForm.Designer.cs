@@ -259,6 +259,7 @@
             searchBtn.Name = "searchBtn";
             searchBtn.Size = new Size(29, 24);
             searchBtn.Text = "Search";
+            searchBtn.Click += searchBtn_Click;
             // 
             // filterSearch
             // 
@@ -275,18 +276,21 @@
             titleBtn.Name = "titleBtn";
             titleBtn.Size = new Size(152, 26);
             titleBtn.Text = "Title";
+            titleBtn.Click += titleBtn_Click;
             // 
             // contentBtn
             // 
             contentBtn.Name = "contentBtn";
             contentBtn.Size = new Size(152, 26);
             contentBtn.Text = "Content";
+            contentBtn.Click += contentBtn_Click;
             // 
             // categoryBtn
             // 
             categoryBtn.Name = "categoryBtn";
             categoryBtn.Size = new Size(152, 26);
             categoryBtn.Text = "Category";
+            categoryBtn.Click += categoryBtn_Click;
             // 
             // descinding
             // 
@@ -296,6 +300,7 @@
             descinding.Name = "descinding";
             descinding.Size = new Size(29, 24);
             descinding.Text = "Descinding";
+            descinding.Click += descinding_Click;
             // 
             // assending
             // 
@@ -306,6 +311,7 @@
             assending.Size = new Size(29, 24);
             assending.Text = "Assending";
             assending.Visible = false;
+            assending.Click += assending_Click;
             // 
             // logoutBtn
             // 
@@ -316,6 +322,7 @@
             logoutBtn.Name = "logoutBtn";
             logoutBtn.Size = new Size(29, 24);
             logoutBtn.Text = "Logout";
+            logoutBtn.Click += logoutBtn_Click;
             // 
             // usernameLbl
             // 

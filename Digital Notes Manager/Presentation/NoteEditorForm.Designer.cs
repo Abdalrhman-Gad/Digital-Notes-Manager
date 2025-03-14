@@ -31,10 +31,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NoteEditorForm));
             NoteEditorpn = new Panel();
-            flowLayoutPanel1 = new FlowLayoutPanel();
             addBtn = new Button();
             panel1 = new Panel();
-            categorySelector = new Digital_Notes_Manager.Presentation.CustomControlls.CategorySelector();
+            categorySelector = new CustomControlls.CategorySelector();
             ReminderDatelbl = new Label();
             saveBtn = new Button();
             reminderDate = new DateTimePicker();
@@ -48,10 +47,11 @@
             btnItalic = new CheckBox();
             btnUnderline = new CheckBox();
             openFileDialog1 = new OpenFileDialog();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             NoteEditorpn.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             FontStylegb.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // NoteEditorpn
@@ -64,17 +64,8 @@
             NoteEditorpn.Dock = DockStyle.Fill;
             NoteEditorpn.Location = new Point(0, 0);
             NoteEditorpn.Name = "NoteEditorpn";
-            NoteEditorpn.Size = new Size(517, 691);
+            NoteEditorpn.Size = new Size(517, 493);
             NoteEditorpn.TabIndex = 0;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.BackColor = Color.White;
-            flowLayoutPanel1.Controls.Add(addBtn);
-            flowLayoutPanel1.Location = new Point(12, 618);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(492, 61);
-            flowLayoutPanel1.TabIndex = 14;
             // 
             // addBtn
             // 
@@ -205,9 +196,9 @@
             // 
             // contentTxt
             // 
-            contentTxt.Location = new Point(12, 324);
+            contentTxt.Location = new Point(12, 273);
             contentTxt.Name = "contentTxt";
-            contentTxt.Size = new Size(489, 281);
+            contentTxt.Size = new Size(489, 145);
             contentTxt.TabIndex = 5;
             contentTxt.Text = "";
             // 
@@ -221,7 +212,7 @@
             FontStylegb.ForeColor = SystemColors.ActiveCaptionText;
             FontStylegb.Location = new Point(12, 190);
             FontStylegb.Name = "FontStylegb";
-            FontStylegb.Size = new Size(489, 117);
+            FontStylegb.Size = new Size(489, 77);
             FontStylegb.TabIndex = 1;
             FontStylegb.TabStop = false;
             FontStylegb.Text = "Font Style";
@@ -230,7 +221,7 @@
             // 
             btnBold.AutoSize = true;
             btnBold.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBold.Location = new Point(78, 47);
+            btnBold.Location = new Point(79, 28);
             btnBold.Name = "btnBold";
             btnBold.Size = new Size(63, 24);
             btnBold.TabIndex = 2;
@@ -241,7 +232,7 @@
             // 
             btnItalic.AutoSize = true;
             btnItalic.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btnItalic.Location = new Point(201, 47);
+            btnItalic.Location = new Point(202, 28);
             btnItalic.Name = "btnItalic";
             btnItalic.Size = new Size(63, 24);
             btnItalic.TabIndex = 3;
@@ -252,7 +243,7 @@
             // 
             btnUnderline.AutoSize = true;
             btnUnderline.Font = new Font("Segoe UI", 9F, FontStyle.Underline, GraphicsUnit.Point, 0);
-            btnUnderline.Location = new Point(337, 47);
+            btnUnderline.Location = new Point(338, 28);
             btnUnderline.Name = "btnUnderline";
             btnUnderline.Size = new Size(95, 24);
             btnUnderline.TabIndex = 4;
@@ -263,25 +254,34 @@
             // 
             openFileDialog1.FileName = "openFileDialog1";
             // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.BackColor = Color.White;
+            flowLayoutPanel1.Controls.Add(addBtn);
+            flowLayoutPanel1.Location = new Point(10, 424);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(493, 61);
+            flowLayoutPanel1.TabIndex = 14;
+            // 
             // NoteEditorForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(517, 691);
+            ClientSize = new Size(517, 493);
             Controls.Add(NoteEditorpn);
             Margin = new Padding(4, 5, 4, 5);
             MaximizeBox = false;
             MaximumSize = new Size(535, 738);
-            MinimumSize = new Size(535, 738);
+            MinimumSize = new Size(535, 540);
             Name = "NoteEditorForm";
             Text = "Note Editor";
             Load += NoteEditorForm_Load;
             NoteEditorpn.ResumeLayout(false);
-            flowLayoutPanel1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             FontStylegb.ResumeLayout(false);
             FontStylegb.PerformLayout();
+            flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 

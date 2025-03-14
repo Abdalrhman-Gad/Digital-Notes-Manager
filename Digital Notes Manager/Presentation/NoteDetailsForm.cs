@@ -53,7 +53,9 @@ namespace Digital_Notes_Manager.Presentation
 
             noteEditorForm.Note = Note;
 
-            noteEditorForm.ShowDialog();
+            noteEditorForm.MdiParent = this.MdiParent;
+
+            noteEditorForm.Show();
         }
     }
 }

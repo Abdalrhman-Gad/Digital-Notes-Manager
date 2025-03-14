@@ -136,6 +136,7 @@
             Controls.Add(reminderDateLbl);
             Controls.Add(categoryLbl);
             Controls.Add(contentTxt);
+            MaximizeBox = false;
             MaximumSize = new Size(463, 448);
             MinimumSize = new Size(463, 448);
             Name = "NoteDetailsForm";
