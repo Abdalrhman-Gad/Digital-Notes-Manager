@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 
 namespace Digital_Notes_Manager
@@ -53,11 +54,13 @@ namespace Digital_Notes_Manager
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
-
             services.AddLogging();
 
             services.AddSingleton<UserService>();
-            services.AddSingleton<NoteService>();
+            //ReminderBackgroundService runs in the background, 
+            //it should create a new scoped instance of
+            //NoteService each time it runs.
+            services.AddScoped<NoteService>();
 
             services.AddSingleton<IHostedService, ReminderBackgroundService>();
 
